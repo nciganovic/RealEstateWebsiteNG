@@ -1,0 +1,76 @@
+/* footer */
+
+footer {
+    background: #ff6b6b;
+}
+
+.footer-grid h3 {
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.footer-grid ul li a,
+.footer-grid ul li {
+    color: #eee;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin: 10px 0;
+}
+
+/* logo */
+a.logo {
+    font-size: 58px;
+}
+
+a.logo:hover {
+    color: #fff;
+}
+
+.copyright-w3ls {
+    background: #191919;
+}
+
+/* //logo */
+
+/* copyright */
+p.copy-right-grids {
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+p.copy-right-grids a {
+    color: #ff6b6b;
+}
+
+/* //copyright */
+/* social-icons */
+.w3social-icons ul li {
+    display: inline-block;
+}
+
+.w3social-icons ul li a {
+    display: block;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.59);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.59);
+    box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.59);
+    width: 36px;
+    height: 36px;
+    text-align: center;
+}
+
+.w3social-icons ul li a span {
+    color: #fff;
+    font-size: 15px;
+    line-height: 36px;
+}
+
+.w3social-icons ul li a:hover {
+    -webkit-box-shadow: 0px 0px 13px 2px #ff6b6b;
+    -moz-box-shadow: 0px 0px 13px 2px #ff6b6b;
+    box-shadow: 0px 0px 13px 2px #ff6b6b;
+}
+
+/* //social-icons */
+/* //footer */

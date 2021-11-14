@@ -1,0 +1,72 @@
+/* services */
+#services {
+    background: url(../../../assets/img/bg1.jpg) center no-repeat fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    position: relative;
+}
+
+.w3pvtits-services-grids h4 {
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.w3pvtits-services-grids .icon-effect-wthree {
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    -webkit-box-shadow: 7px 4px 5px rgba(0, 0, 0, 0.37);
+    -moz-box-shadow: 7px 4px 5px rgba(0, 0, 0, 0.37);
+    box-shadow: 7px 4px 5px rgba(0, 0, 0, 0.37);
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.w3pvtits-services-grids .icon-effect-wthree span {
+    font-size: 2em;
+    color: #ff6b6b;
+    line-height: 2.2;
+}
+
+.w3pvtits-services-grids {
+    background: #fff;
+    padding: 3em;
+}
+
+a.service-btn {
+    color: #ff6b6b;
+    font-size: 14px;
+    display: inline-block;
+    letter-spacing: 1px;
+    font-weight: 600;
+    -webkit-border-radius: 0px;
+    -o-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+a.service-btn:hover {
+    letter-spacing: 2px;
+}
+
+.img-posi-w3pvt {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.service-card{
+    transition: all .2s ease-in-out;
+}
+.service-card:hover{
+    transform: scale(1.1);
+}
+
+/* //services */

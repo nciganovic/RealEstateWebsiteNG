@@ -1,0 +1,28 @@
+#property-card-holder {
+    padding-bottom: 400px;
+}
+
+.image-block {
+    display: block;
+    position: relative;
+}
+
+.property-info-list {
+    background-image: initial;
+    background-color: rgb(29, 32, 33);
+    background: #f4f5f7;
+}
+.title {
+    font-size: 1.2rem;
+}
+.footer-properties {
+    border-top: 1px solid #ddd;
+    padding-top: 0.7em;
+    margin-top: 1em;
+    font-size: 0.9em;
+}
+
+.black
+{
+    color: black;
+}

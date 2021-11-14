@@ -1,0 +1,76 @@
+/* banner */
+.mian-content-wthree {
+    background: url(../../../assets/img/banner.png) no-repeat top;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    min-height: 50vw;
+    z-index: 1;
+    position: relative;
+}
+
+/* banner text */
+.style-banner {
+    padding-top: 18em;
+    max-width: 800px;
+}
+
+.style-banner h3 {
+    font-size: 56px;
+    letter-spacing: 1px;
+}
+
+.style-banner h3 span {
+    color: #ff6b6b;
+    background: #fff;
+    padding: 0px 17px 5px;
+    font-size: 50px;
+}
+
+.style-banner p {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+/* //banner text */
+/* form */
+.home-form-w3ls select.form-control {
+    font-size: 15px;
+    border: none;
+    -webkit-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.28);
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.28);
+    outline: none;
+    letter-spacing: 1px;
+    color: #5f5d5d;
+    box-sizing: border-box;
+    -webkit-border-radius: 0px;
+    -o-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    height: 46px !important;
+    cursor: pointer;
+}
+
+.home-form-w3ls a {
+    background: #ff6b6b;
+    color: #fff;
+    padding: 13px 40px;
+    margin-top: 2em;
+    border: none;
+    outline: none;
+    letter-spacing: 1px;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-border-radius: 0px;
+    -o-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+/* //form */
+/* //banner */

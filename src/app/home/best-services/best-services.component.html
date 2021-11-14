@@ -1,0 +1,27 @@
+  <!-- services -->
+  <div class="w3pvtits-services py-5" id="services">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="title-w3 mb-2 text-center text-wh font-weight-bold">We Provide The <span>Best Services</span>
+        </h3>
+        <div id="services-cards" class="row w3pvtits-services-row text-center pt-4">
+        
+          <div *ngFor='let item of ServiceItems;' class="col-lg-4 service-card">
+            <a class="{{ item.class }}" href="/properties">
+                <div class="w3pvtits-services-grids">
+                    <div class="icon-effect-wthree">
+                        <span class="fa {{ item.icon }} ser-icon"></span>
+                    </div>
+                    <h4 class="text-bl my-4">{{ item.headline }}</h4>
+                    <p class="text-center">{{ item.text }}</p>
+                    <a class="service-btn btn mt-xl-5 mt-4 {{ item.class }}" href="/properties">Read More
+                        <span class="fa fa-long-arrow-right ml-2"></span>
+                    </a>
+                </div>  
+            </a>
+          </div>
+        
+        </div>
+    </div>
+    <img src="../../assets/img/img.png" alt="services" class="img-fluid img-posi-w3pvt" />
+  </div>
+  <!-- //services -->

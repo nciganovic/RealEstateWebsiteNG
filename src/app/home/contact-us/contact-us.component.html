@@ -1,0 +1,38 @@
+  <!-- contact-->
+  <section class="contact py-5" id="contact">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="title-w3 mb-2 text-center text-wh font-weight-bold">Contact <span>Us</span></h3>
+        <div class="contact_grid_right pt-4">
+            <form action="#" method="#" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row contact_left_grid">
+                    <div class="col-lg-6 con-left">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" id="name" formControlName="name" [@valid]="form.get('name')?.valid" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="Email" id="Email" formControlName="email" [@valid]="form.get('email')?.valid" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="Subject" id="Subject" formControlName="subject" [@valid]="form.get('subject')?.valid" placeholder="Subject">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 con-right">
+                        <div class="form-group">
+                            <textarea name="text_area" id="text_area" cols="30" formControlName="message" [@valid]="form.get('message')?.valid" placeholder="Message"> </textarea>
+                        </div>
+                        <button class="form-control btn" id="sbm_form" type="submit">Submit</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 form-errors">
+                        <p for="name"  *ngIf="!form.get('name')?.valid" [ngStyle]="{'color':'red'}">Name cannot have numbers, max 30 char</p>   
+                        <p for="email" *ngIf="!form.get('email')?.valid" [ngStyle]="{'color':'red'}">Email is in invalid format</p>   
+                        <p for="subject" *ngIf="!form.get('subject')?.valid" [ngStyle]="{'color':'red'}">Subject must have between 2-30 char</p>    
+                        <p for="message" *ngIf="!form.get('message')?.valid" [ngStyle]="{'color':'red'}">Message must have between 2-500 char</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </section>
+  <!-- //Contact -->

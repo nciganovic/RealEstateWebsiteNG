@@ -1,0 +1,3 @@
+<select name="{{ type }}" class="{{ ddClass }}">
+    <option *ngFor='let item of DropDownItems; index as i;' value="{{ item }}">{{ item | titlecase }}</option>
+</select>

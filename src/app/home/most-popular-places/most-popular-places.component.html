@@ -1,0 +1,22 @@
+  <!-- places -->
+  <section class="branches py-5" id="places">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="title-w3 mb-2 text-center text-bl font-weight-bold">Most Popular <span>Places</span></h3>
+        <div class="d-flex justify-content-center row">
+          <div *ngFor='let item of PopularPlaces;' id="place-cards" class="pt-4 col-3 w-100">
+            <div>
+                <!-- branch-img -->
+                <a id="{{ item.id }}" href="/properties">
+                <div class="team-img {{ item.img }} place-card">
+                    <div class="team-content">
+                        <h4 class="text-wh">{{ item.place }}</h4>
+                        <p class="team-meta">{{ item.city }}</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+  <!-- //places -->
