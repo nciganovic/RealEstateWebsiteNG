@@ -10,9 +10,5 @@
     {
         "name":"Author",
         "href":"author"
-    },
-    {
-        "name":"Documentation",
-        "href":"docs"
     }
 ]
