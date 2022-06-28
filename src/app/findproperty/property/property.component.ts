@@ -19,4 +19,12 @@ export class PropertyComponent implements OnInit {
   {
     return this._propertyService.PropertyItems;
   }
+
+  public onRemove(event: Event)
+  {
+    event.preventDefault();
+    let elementId: string = (event.target as Element).id;
+    console.log(elementId);
+    this._propertyService.removeProperty(elementId);
+  }
 }

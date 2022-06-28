@@ -198,4 +198,11 @@ export class PropertiesService {
     let searchedItems:Property[] =  propTmp.filter(x => x.title.toLowerCase().includes(search.toLowerCase()));  
     return searchedItems;
   }
+
+  removeProperty(id: string): void
+  {
+    let property = this._allPropertyItems.filter(x => x.id == Number(id))[0];
+    let index = this._allPropertyItems.indexOf(property) ;
+    this._allPropertyItems.splice(index, 1);
+  }
 }

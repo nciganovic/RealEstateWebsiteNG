@@ -34,7 +34,10 @@
                         <i class="fa fa-user mr-2 black"></i> {{ item.owner }}
                     </span>
                     <span>
-                        <a href="">Contact <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="remove-item" id="{{ item.id }}" (click)="onRemove($event)">Remove <i class="fas fa-arrow-right"></i></a>
+                    </span>
+                    <span>
+                        <a href="#">Contact <i class="fas fa-arrow-right"></i></a>
                     </span>
                 </div>
             </div>
