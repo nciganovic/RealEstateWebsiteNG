@@ -20,6 +20,7 @@ import { FilterComponent } from './findproperty/filter/filter.component';
 import { PropertyComponent } from './findproperty/property/property.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { CreatepropertyComponent } from './findproperty/createproperty/createproperty.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     FilterComponent,
     PropertyComponent,
     DropdownComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    CreatepropertyComponent
   ],
   imports: [
     BrowserModule,

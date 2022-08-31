@@ -11,7 +11,7 @@ export class PropertiesService {
 
   private _propertyItems: Property[] = [];
 
-  private _allPropertyItems : Property[] = [];
+  private _filteredPropertyItems : Property[] = [];
 
   private _uniqueTypes: string[] = [];
   private _uniqueBedrooms: number[] = [];
@@ -61,8 +61,7 @@ export class PropertiesService {
     (
       (Response:Property[]) => 
       {
-        this._propertyItems = Response;
-        this._allPropertyItems = Response;
+        this._propertyItems = this._filteredPropertyItems = Response;
 
         this._uniqueTypes = this.getTypeUniqueValues(this._propertyItems);
         this._uniqueStatus = this.getStatusUniqueValues(this._propertyItems);
@@ -140,9 +139,9 @@ export class PropertiesService {
 
   filterProperties(filter: Filter): Property[]
   { 
-    console.log(this._allPropertyItems);
+    console.log(this._filteredPropertyItems);
 
-    let propTmp = this._allPropertyItems.map(item => Object.assign({}, item));
+    let propTmp = this._filteredPropertyItems.map(item => Object.assign({}, item));
 
     if(filter.status !== "status")
     {
@@ -191,18 +190,20 @@ export class PropertiesService {
 
   searchProperties(search: string): Property[]
   {
-    console.log(this._allPropertyItems);
+    console.log(this._filteredPropertyItems);
 
-    let propTmp = this._allPropertyItems.map(item => Object.assign({}, item));
+    let propTmp = this._filteredPropertyItems.map(item => Object.assign({}, item));
 
-    let searchedItems:Property[] =  propTmp.filter(x => x.title.toLowerCase().includes(search.toLowerCase()));  
+    let searchedItems =  propTmp.filter(x => x.title.toLowerCase().includes(search.toLowerCase()));  
     return searchedItems;
   }
 
   removeProperty(id: string): void
   {
-    let property = this._allPropertyItems.filter(x => x.id == Number(id))[0];
-    let index = this._allPropertyItems.indexOf(property) ;
-    this._allPropertyItems.splice(index, 1);
+    let property = this.PropertyItems.filter(x => x.id == Number(id))[0];
+    
+    let index = this.PropertyItems.indexOf(property) ;
+    this.PropertyItems.splice(index, 1);
+    this._filteredPropertyItems = this.PropertyItems;
   }
 }

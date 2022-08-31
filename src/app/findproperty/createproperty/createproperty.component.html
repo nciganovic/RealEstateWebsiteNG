@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form action="#" method="#" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div *ngIf="isFormVisible">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" formControlName="title" [@valid]="form.get('title')?.valid" aria-describedby="text" placeholder="Title">
+                        <small *ngIf="!form.get('title')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 5 characters, maximum 50</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="location" name="location">Location</label>
+                        <select class="form-control" formControlName="location" [@valid]="form.get('location')?.valid" name="location">
+                            <option value="">Select location</option>
+                            <option *ngFor="let location of Locations;" value="{{location}}">{{location}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" formControlName="status" [@valid]="form.get('status')?.valid" name="status">
+                            <option value="">Select status</option>
+                            <option *ngFor="let status of Statuses;" value="{{status}}">{{status}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Price</label>
+                        <input type="number" class="form-control" id="price" formControlName="price" aria-describedby="text" name="price" [@valid]="form.get('price')?.valid" placeholder="Price">
+                        <small *ngIf="!form.get('price')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 0 characters, maximum 1.000.000</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select formControlName="type" class="form-control" [@valid]="form.get('type')?.valid" name="type">
+                            <option value="">Select type</option>
+                            <option *ngFor="let type of Types;" value="{{type}}">{{type}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rooms">Rooms</label>
+                        <input type="number" formControlName="rooms" class="form-control" id="rooms" name="rooms" [@valid]="form.get('rooms')?.valid" aria-describedby="text" placeholder="Rooms">
+                        <small *ngIf="!form.get('rooms')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 0 characters, maximum 10</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="owner">Owner</label>
+                        <input type="text" class="form-control" formControlName="owner" id="owner" aria-describedby="text" placeholder="Owner" name="owner" [@valid]="form.get('owner')?.valid">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" formControlName="date" id="date" aria-describedby="text" placeholder="Date" name="date" [@valid]="form.get('date')?.valid">
+                    </div>
+
+                    <button (click)="onSubmitPropertyForm()" type="submit" class="btn btn-success">Submit</button>
+                    <button (click)="onClosePropertyForm()" type="button" class="btn btn-danger ml-3">Cancel</button>
+                </div>
+                <div *ngIf="!isFormVisible">
+                    <button (click)="onAddProperty()" type="button" class="btn btn-success">Create property</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
