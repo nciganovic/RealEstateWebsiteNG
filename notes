@@ -1,7 +1,8 @@
 - ng-container 
-- use custom pipes
-- properties json more details for owner and something else
-- get property page by id
+- use custom pipes [done]
+- properties json more details for owner and something else [done]
+- get property page by id 
 - remove href with routerLink
 - make multipe modules form app module (admin, shared, property)
 - finsih CRUD actions
+- add alt to images [done]
