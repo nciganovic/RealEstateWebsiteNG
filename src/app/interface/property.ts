@@ -1,13 +1,15 @@
+import { Owner } from "./owner";
+import { Location } from "./location";
+
 export interface Property
 {
     id: number,
-    title: string,
-    location: string,
+    location: Location,
     status: string,
     price: number,
     type: string,
     rooms: number,
-    owner: string,
+    owner: Owner,
     date: Date,
     img: string
 }

@@ -112,9 +112,9 @@ export class PropertiesService {
   {
     let uniqueLocations: string[] = [];
     propertyItems.forEach(element => {
-      if(!uniqueLocations.includes(element.location))
+      if(!uniqueLocations.includes(element.location.city))
       {
-        uniqueLocations.push(element.location);
+        uniqueLocations.push(element.location.city);
       }
     });
 
@@ -157,7 +157,7 @@ export class PropertiesService {
 
     if(filter.location !== "location")
     {
-      let itemsToRemove:Property[] = propTmp .filter(x => x.location == filter.location); 
+      let itemsToRemove:Property[] = propTmp .filter(x => x.location.city == filter.location); 
       propTmp  = propTmp .filter(x => itemsToRemove.indexOf(x) !== -1);
     } 
 
@@ -194,7 +194,7 @@ export class PropertiesService {
 
     let propTmp = this._filteredPropertyItems.map(item => Object.assign({}, item));
 
-    let searchedItems =  propTmp.filter(x => x.title.toLowerCase().includes(search.toLowerCase()));  
+    let searchedItems =  propTmp.filter(x => (x.location.street.name.toLowerCase() + x.location.street.number).includes(search.toLowerCase()));  
     return searchedItems;
   }
 
