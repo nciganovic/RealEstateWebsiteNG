@@ -21,6 +21,8 @@ import { PropertyComponent } from './findproperty/property/property.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CreatepropertyComponent } from './findproperty/createproperty/createproperty.component';
+import { PluralPipe } from './pipes/plural.pipe';
+import { DotNumberPipe } from './pipes/dot-number.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { CreatepropertyComponent } from './findproperty/createproperty/createpro
     PropertyComponent,
     DropdownComponent,
     NotfoundComponent,
-    CreatepropertyComponent
+    CreatepropertyComponent,
+    PluralPipe,
+    DotNumberPipe
   ],
   imports: [
     BrowserModule,
