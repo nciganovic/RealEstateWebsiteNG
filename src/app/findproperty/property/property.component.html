@@ -3,20 +3,20 @@
         <div *ngFor="let item of Properties" class="col-xl-4 col-lg-4 col-md-6 mt-3">
             <span class="image-block">
                 <a href="../../../assets/img/{{ item.img }}" data-gal="prettyPhoto[gallery]">
-                    <img class="w-100" src="../../../assets/img/{{ item.img }}" alt="#">
+                    <img class="w-100" src="../../../assets/img/{{ item.img }}" alt="{{ item.location.street.number }} {{ item.location.street.name }}">
                 </a>
             </span>
             <div class="property-info-list pl-3 pr-3">
                 <div>
                     <h4 class="title pt-3">
-                        {{ item.title }}
+                        {{ item.location.street.number }} {{ item.location.street.name }}
                     </h4>
                     <div class="location mt-2 mb-2">
-                        <i class="fas fa-map-marker-alt"></i> {{ item.location }}, {{ item.date }}
+                        <i class="fas fa-map-marker-alt"></i> {{ item.location.city }}, {{ item.location.country }}, {{ item.date | date:'longDate'  }}
                     </div>
                     <ul class="facilities-list clearfix row">
                         <li class="mt-2 mb-2 col-6">
-                            <i class="fas fa-bed"></i> {{ item.rooms }} Bedrooms
+                            <i class="fas fa-bed"></i> {{ item.rooms }} {{ "Bedroom" | plural:item.rooms }} 
                         </li>
                         <li class="mt-2 mb-2 col-6">
                             <i class="fas fa-adjust"></i> {{ item.status }}
@@ -25,13 +25,13 @@
                             <i class="far fa-building"></i> {{ item.type }}
                         </li>
                         <li class="mt-2 mb-2 col-6">
-                            <i class="fas fa-dollar-sign"></i> {{ item.price }}
+                            <i class="fas fa-dollar-sign"></i> {{ item.price | dotNumber }}
                         </li>
                     </ul>
                 </div>
                 <div class="footer-properties d-flex justify-content-between pb-2">
                     <span>
-                        <i class="fa fa-user mr-2 black"></i> {{ item.owner }}
+                        <i class="fa fa-user mr-2 black"></i> {{ item.owner.firstName }} {{ item.owner.lastName }}
                     </span>
                     <span>
                         <a href="#">Edit <i class="fas fa-arrow-right"></i></a>
