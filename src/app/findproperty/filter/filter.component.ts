@@ -1,4 +1,4 @@
-import { Filter } from './../../interface/filter';
+import { Filter } from '../../shared/interface/filter';
 import { PropertyComponent } from './../property/property.component';
 import { Component, OnInit } from '@angular/core';
 import { PropertiesService } from 'src/app/services/properties.service';

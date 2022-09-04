@@ -2,7 +2,7 @@
     <div id="property-card-holder" class="row mt-5">
         <div *ngFor="let item of Properties" class="col-xl-4 col-lg-4 col-md-6 mt-3">
             <span class="image-block">
-                <a href="../../../assets/img/{{ item.img }}" data-gal="prettyPhoto[gallery]">
+                <a [routerLink]="['/properties', item.id]" data-gal="prettyPhoto[gallery]">
                     <img class="w-100" src="../../../assets/img/{{ item.img }}" alt="{{ item.location.street.number }} {{ item.location.street.name }}">
                 </a>
             </span>
@@ -25,7 +25,7 @@
                             <i class="far fa-building"></i> {{ item.type }}
                         </li>
                         <li class="mt-2 mb-2 col-6">
-                            <i class="fas fa-dollar-sign"></i> {{ item.price | dotNumber }}
+                            <i class="fas fa-dollar-sign"></i> ${{ item.price | dotNumber }}
                         </li>
                     </ul>
                 </div>

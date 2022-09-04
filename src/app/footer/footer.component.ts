@@ -1,4 +1,4 @@
-import { Social } from './../interface/social';
+import { Social } from '../shared/interface/social';
 import { SocialService } from './../services/social.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -33,5 +33,10 @@ export class FooterComponent implements OnInit {
         return;
       }
     )
+  }
+
+  public goToTop()
+  {
+    window.scroll(0,0);
   }
 }

@@ -1,4 +1,4 @@
-import { Service } from './../../interface/service';
+import { Service } from '../../shared/interface/service';
 import { BestservicesService } from './../../services/bestservices.service';
 import { Component, OnInit } from '@angular/core';
 

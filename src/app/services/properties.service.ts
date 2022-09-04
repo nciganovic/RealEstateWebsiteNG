@@ -1,8 +1,8 @@
-import { Property } from './../interface/property';
+import { Property } from '../shared/interface/property';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Filter } from '../interface/filter';
+import { Filter } from '../shared/interface/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +53,11 @@ export class PropertiesService {
   getProperties():Observable<any>
   {
     return this._http.get('/assets/data/properties.json');
+  }
+
+  getPropertyItemById(id: number): Property
+  {
+    return this._propertyItems.filter(x => x.id === id)[0];
   }
 
   getPropertiesRequest()

@@ -1,6 +1,6 @@
 import { WelcomeService } from './../../services/welcome.service';
 import { Component, OnInit } from '@angular/core';
-import { Welcome } from 'src/app/interface/welcome';
+import { Welcome } from 'src/app/shared/interface/welcome';
 
 @Component({
   selector: 'app-welcome',

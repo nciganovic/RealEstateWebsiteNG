@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-8 mt-3">
+            <span class="image-block">
+                <img class="w-100" src="../../../assets/img/{{ SingleProperty.img }}" alt="{{ SingleProperty.location.street.number }} {{ SingleProperty.location.street.name }}">
+            </span>
+            <h3 class="my-3">Property information</h3>
+            <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row"><i class="fas fa-bed"></i> {{ "Bedroom" | plural:SingleProperty.rooms }} </th>
+                    <td>{{ SingleProperty.rooms }} </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><i class="far fa-building"></i> Type</th>
+                    <td>{{ SingleProperty.type }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><i class="fas fa-adjust"></i> Status</th>
+                    <td>{{ SingleProperty.status }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><i class="fas fa-dollar-sign"></i> Price</th>
+                    <td>${{ SingleProperty.price | dotNumber  }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 class="my-3">Owner information</h3>
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row">Full name </th>
+                    <td>{{ SingleProperty.owner.firstName }} {{ SingleProperty.owner.lastName }} </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Email</th>
+                    <td>{{ SingleProperty.owner.email }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Phone number</th>
+                    <td>{{ SingleProperty.owner.phoneNumber }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

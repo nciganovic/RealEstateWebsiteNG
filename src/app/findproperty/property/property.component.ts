@@ -1,4 +1,4 @@
-import { Property } from './../../interface/property';
+import { Property } from '../../shared/interface/property';
 import { PropertiesService } from './../../services/properties.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,7 +12,7 @@ export class PropertyComponent implements OnInit {
   constructor(private _propertyService: PropertiesService) { }
 
   ngOnInit(): void {
-    
+    window.scroll(0,0);
   }
 
   public get Properties()

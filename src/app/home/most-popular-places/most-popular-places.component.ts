@@ -1,5 +1,5 @@
 import { PlacesService } from './../../services/places.service';
-import { Place } from './../../interface/place';
+import { Place } from '../../shared/interface/place';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

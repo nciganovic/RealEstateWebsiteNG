@@ -6,16 +6,16 @@
                 <h3 class="mb-sm-4 mb-3 pb-lg-3">Home</h3>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="index.html">Index</a>
+                        <a routerLink="home">Index</a>
                     </li>
                     <li>
-                        <a href="#about">About Us</a>
+                        <a routerLink="home">About Us</a>
                     </li>
                     <li>
-                        <a href="#services">Services</a>
+                        <a routerLink="home">Services</a>
                     </li>
                     <li>
-                        <a href="#contact">Contact Us</a>
+                        <a routerLink="home">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -23,10 +23,10 @@
                 <h3 class="mb-sm-4 mb-3 pb-lg-3"> Company</h3>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="property.html">Find a Property</a>
+                        <a routerLink="properties" >Find a Property</a>
                     </li>
                     <li>
-                        <a href="property.html">Popular Places</a>
+                        <a routerLink="properties">Popular Places</a>
                     </li>
                 </ul>
             </div>
@@ -45,20 +45,20 @@
                 <h3 class="mb-sm-4 mb-3 pb-lg-3">Shop</h3>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="property.html">On sale</a>
+                        <a routerLink="properties">On sale</a>
                     </li>
                     <li>
-                        <a href="property.html">Buy property</a>
+                        <a routerLink="properties">Buy property</a>
                     </li>
                     <li>
-                        <a href="property.html">Rent property</a>
+                        <a routerLink="properties">Rent property</a>
                     </li>
                 </ul>
             </div>
             <div class="col-lg-4 footer-grid mt-lg-0 mt-4">
                 <div class="footer-logo">
                     <h2 class="text-lg-center text-center">
-                        <a class="logo text-wh font-weight-bold" href="index.html"><span
+                        <a class="logo text-wh font-weight-bold" routerLink="home" fragment="home"><span
                                 class="text-bl">L</span>and</a>
                     </h2>
                 </div>
@@ -92,7 +92,7 @@
   </div>
   <!-- //copyright -->
   <!-- move top icon -->
-  <a href="#home" class="move-top text-center">
+  <a (click)="goToTop()" class="move-top text-center">
     <span class="fa fa-angle-double-up" aria-hidden="true"></span>
   </a>
 </footer>
