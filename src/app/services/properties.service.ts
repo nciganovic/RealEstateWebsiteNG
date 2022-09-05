@@ -129,9 +129,6 @@ export class PropertiesService {
   getStatusUniqueValues(propertyItems: Property[])
   {
     let uniqueStatus: string[] = [];
-
-    console.log(this._propertyItems);
-
     propertyItems.forEach(element => {
       if(!uniqueStatus.includes(element.status))
       {
@@ -144,8 +141,6 @@ export class PropertiesService {
 
   filterProperties(filter: Filter): Property[]
   { 
-    console.log(this._filteredPropertyItems);
-
     let propTmp = this._filteredPropertyItems.map(item => Object.assign({}, item));
 
     if(filter.status !== "status")
@@ -172,7 +167,6 @@ export class PropertiesService {
       propTmp  = propTmp .filter(x => itemsToRemove.indexOf(x) !== -1);
     }
 
-    console.log(propTmp );
     let itemsToRemove:Property[] = propTmp .filter(x => x.price > Number(filter.minPrice) 
                                                                 && x.price < Number(filter.maxPrice));
     propTmp  = propTmp .filter(x => itemsToRemove.indexOf(x) !== -1);
@@ -189,16 +183,12 @@ export class PropertiesService {
         propTmp .sort(((x, y) => x.date > y.date ? 1 : -1));
     }
 
-    console.log(propTmp);
     return propTmp;
   }
 
   searchProperties(search: string): Property[]
   {
-    console.log(this._filteredPropertyItems);
-
     let propTmp = this._filteredPropertyItems.map(item => Object.assign({}, item));
-
     let searchedItems =  propTmp.filter(x => (x.location.street.name.toLowerCase() + x.location.street.number).includes(search.toLowerCase()));  
     return searchedItems;
   }
@@ -206,7 +196,6 @@ export class PropertiesService {
   removeProperty(id: string): void
   {
     let property = this.PropertyItems.filter(x => x.id == Number(id))[0];
-    
     let index = this.PropertyItems.indexOf(property) ;
     this.PropertyItems.splice(index, 1);
     this._filteredPropertyItems = this.PropertyItems;

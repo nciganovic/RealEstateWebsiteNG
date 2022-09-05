@@ -20,11 +20,10 @@ export class PropertyComponent implements OnInit {
     return this._propertyService.PropertyItems;
   }
 
-  public onRemove(event: Event)
+  public onRemove(event: Event, id: number)
   {
     event.preventDefault();
-    let elementId: string = (event.target as Element).id;
-    console.log(elementId);
-    this._propertyService.removeProperty(elementId);
+    if(confirm("Are you sure you want to remove this property?"))
+      this._propertyService.removeProperty(id.toString());
   }
 }

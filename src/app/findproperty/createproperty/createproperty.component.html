@@ -3,10 +3,16 @@
         <div class="col-12">
             <form action="#" method="#" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div *ngIf="isFormVisible">
+                    <h3>Property information</h3>
                     <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" name="title" id="title" formControlName="title" [@valid]="form.get('title')?.valid" aria-describedby="text" placeholder="Title">
-                        <small *ngIf="!form.get('title')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 5 characters, maximum 50</small>
+                        <label for="streetName">Street name</label>
+                        <input type="text" class="form-control" name="streetName" id="streetName" formControlName="streetName" [@valid]="form.get('streetName')?.valid" aria-describedby="text" placeholder="Street name">
+                        <small *ngIf="!form.get('streetName')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 5 characters, maximum 50</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="streetNumber">Street number</label>
+                        <input type="text" class="form-control" name="streetNumber" id="streetNumber" formControlName="streetNumber" [@valid]="form.get('streetNumber')?.valid" aria-describedby="text" placeholder="Street number">
+                        <small *ngIf="!form.get('streetNumber')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Field is required.</small>
                     </div>
                     <div class="form-group">
                         <label for="location" name="location">Location</label>
@@ -25,7 +31,7 @@
                     <div class="form-group">
                         <label for="title">Price</label>
                         <input type="number" class="form-control" id="price" formControlName="price" aria-describedby="text" name="price" [@valid]="form.get('price')?.valid" placeholder="Price">
-                        <small *ngIf="!form.get('price')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 0 characters, maximum 1.000.000</small>
+                        <small *ngIf="!form.get('price')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 100 as a value, maximum 1.000.000</small>
                     </div>
                     <div class="form-group">
                         <label for="type">Type</label>
@@ -37,15 +43,27 @@
                     <div class="form-group">
                         <label for="rooms">Rooms</label>
                         <input type="number" formControlName="rooms" class="form-control" id="rooms" name="rooms" [@valid]="form.get('rooms')?.valid" aria-describedby="text" placeholder="Rooms">
-                        <small *ngIf="!form.get('rooms')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 0 characters, maximum 10</small>
+                        <small *ngIf="!form.get('rooms')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 1, maximum 10</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control" formControlName="firstName" id="firstName" aria-describedby="text" placeholder="First name" name="firstName" [@valid]="form.get('firstName')?.valid">
+                        <small *ngIf="!form.get('firstName')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Required field, Maximum 30 characters allowed</small>
                     </div>
                     <div class="form-group">
-                        <label for="owner">Owner</label>
-                        <input type="text" class="form-control" formControlName="owner" id="owner" aria-describedby="text" placeholder="Owner" name="owner" [@valid]="form.get('owner')?.valid">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control" formControlName="lastName" id="lastName" aria-describedby="text" placeholder="Last name" name="lastName" [@valid]="form.get('lastName')?.valid">
+                        <small *ngIf="!form.get('lastName')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Required field, Maximum 30 characters allowed</small>
                     </div>
                     <div class="form-group">
-                        <label for="date">Date</label>
-                        <input type="date" class="form-control" formControlName="date" id="date" aria-describedby="text" placeholder="Date" name="date" [@valid]="form.get('date')?.valid">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" formControlName="email" id="email" aria-describedby="text" placeholder="Email" name="email" [@valid]="form.get('email')?.valid">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone number</label>
+                        <input type="text" class="form-control" formControlName="phoneNumber" id="phoneNumber" aria-describedby="text" placeholder="Phone number" name="phoneNumber" [@valid]="form.get('phoneNumber')?.valid">
+                        <small *ngIf="!form.get('phoneNumber')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Required field, Maximum 15 characters allowed</small>
                     </div>
 
                     <button (click)="onSubmitPropertyForm()" type="submit" class="btn btn-success">Submit</button>
