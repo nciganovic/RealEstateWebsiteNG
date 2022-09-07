@@ -22,12 +22,6 @@ export class PropertiesService {
 
   public get PropertyItems(): Property[]
   {
-    /*
-    if(localStorage.getItem("removedItemIds"))
-    {
-      let removedItemIds: number[] = JSON.parse(localStorage.getItem("removedItemIds") ?? "");
-      return this._propertyItems.filter(x => removedItemIds.indexOf(x.id) === -1);
-    }*/
 
     return this._propertyItems;
   }
