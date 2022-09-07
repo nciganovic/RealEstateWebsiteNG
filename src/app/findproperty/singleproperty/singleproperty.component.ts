@@ -24,13 +24,24 @@ export class SinglepropertyComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; 
       console.log(this.id);
-      this.propertiesService.getPropertiesRequest();
    });
   }
 
     public get SingleProperty(): Property
     {
-      let item = this.propertiesService.PropertyItems[this.id]
+      let item;
+
+      if(!localStorage.getItem("items"))
+      {
+        localStorage.setItem("items", JSON.stringify(this.propertiesService.PropertyItems))
+        item = this.propertiesService.PropertyItems[this.id]
+      }
+      else
+      {
+        let items = JSON.parse(localStorage.getItem("items") ?? "") as Property[];
+        item = items.filter(x => x.id == this.id)[0];
+      }
+
       if(!item)
         this.router.navigate(['/not-found']);
       return item;

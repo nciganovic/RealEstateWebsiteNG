@@ -22,6 +22,13 @@ export class PropertiesService {
 
   public get PropertyItems(): Property[]
   {
+    /*
+    if(localStorage.getItem("removedItemIds"))
+    {
+      let removedItemIds: number[] = JSON.parse(localStorage.getItem("removedItemIds") ?? "");
+      return this._propertyItems.filter(x => removedItemIds.indexOf(x.id) === -1);
+    }*/
+
     return this._propertyItems;
   }
 
@@ -182,7 +189,7 @@ export class PropertiesService {
       else if(filter.orderBy == "Oldest")
         propTmp .sort(((x, y) => x.date > y.date ? 1 : -1));
     }
-
+  
     return propTmp;
   }
 
@@ -199,5 +206,18 @@ export class PropertiesService {
     let index = this.PropertyItems.indexOf(property) ;
     this.PropertyItems.splice(index, 1);
     this._filteredPropertyItems = this.PropertyItems;
+
+    if(!localStorage.getItem("removedItemIds"))
+    {
+      let initalRemoveArr:number[] = [];
+      initalRemoveArr.push(Number(id));
+      localStorage.setItem("removedItemIds", JSON.stringify(initalRemoveArr));
+    }
+    else
+    {
+      let removedIds = JSON.parse(localStorage.getItem("removedItemIds") ?? "") as number[]; 
+      removedIds.push(Number(id));
+      localStorage.setItem("removedItemIds", JSON.stringify(removedIds));
+    }
   }
 }

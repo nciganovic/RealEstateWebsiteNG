@@ -20,6 +20,13 @@ export class PropertyComponent implements OnInit {
 
   public get Properties()
   {
+    
+    if(localStorage.getItem("removedItemIds"))
+    {
+      let removedItemIds: number[] = JSON.parse(localStorage.getItem("removedItemIds") ?? "");
+      return this._propertyService.PropertyItems.filter(x => removedItemIds.indexOf(x.id) === -1);
+    }
+
     return this._propertyService.PropertyItems;
   }
 

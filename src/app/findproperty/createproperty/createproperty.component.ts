@@ -95,7 +95,7 @@ export class CreatepropertyComponent implements OnInit {
     if(this.form.valid)
     { 
       const item : Property = {
-        id: this._propertyService.PropertyItems.length,
+        id: this.getRndInteger(100, 1000),
         location: this.getLocationData(),
         owner: this.getOwnerData(),
         status: this.form.controls.status.value,
@@ -109,6 +109,7 @@ export class CreatepropertyComponent implements OnInit {
       this._propertyService.PropertyItems.unshift(item);
       this.form.reset();
       this.isFormVisible = false;
+      localStorage.setItem("items", JSON.stringify(this._propertyService.PropertyItems));
       alert("Property added successfully.");
     }
   }
@@ -140,8 +141,13 @@ export class CreatepropertyComponent implements OnInit {
 
       this.form.reset();
       this.isFormVisible = false;
+      localStorage.setItem("items", JSON.stringify(this._propertyService.PropertyItems));
       alert("Property edited successfully.");
     }
+  }
+
+  public getRndInteger(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min) ) + min;
   }
 
   public getStreetData()

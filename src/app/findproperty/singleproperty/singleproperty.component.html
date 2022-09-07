@@ -8,6 +8,18 @@
             <table class="table table-striped">
                 <tbody>
                   <tr>
+                    <th scope="row">Street </th>
+                    <td>{{ SingleProperty.location.street.number }} {{ SingleProperty.location.street.name }} </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">City </th>
+                    <td>{{ SingleProperty.location.city }}, {{ SingleProperty.location.country }} </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Date posted </th>
+                    <td>{{ SingleProperty.date | date:'longDate' }} </td>
+                  </tr>
+                  <tr>
                     <th scope="row"><i class="fas fa-bed"></i> {{ "Bedroom" | plural:SingleProperty.rooms }} </th>
                     <td>{{ SingleProperty.rooms }} </td>
                   </tr>
