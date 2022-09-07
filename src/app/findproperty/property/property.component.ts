@@ -1,6 +1,6 @@
 import { Property } from '../../shared/interface/property';
 import { PropertiesService } from './../../services/properties.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-property',
@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./property.component.css']
 })
 export class PropertyComponent implements OnInit {
+
+  @Input() editId: number = -1;
+  @Output() editClicked = new EventEmitter();
 
   constructor(private _propertyService: PropertiesService) { }
 
@@ -18,6 +21,13 @@ export class PropertyComponent implements OnInit {
   public get Properties()
   {
     return this._propertyService.PropertyItems;
+  }
+
+  public onEdit(event: Event, id: number)
+  {
+    event.preventDefault();
+    this.editId = id;
+    this.editClicked.emit(id.toString());
   }
 
   public onRemove(event: Event, id: number)

@@ -4,6 +4,9 @@
             <form action="#" method="#" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div *ngIf="isFormVisible">
                     <h3>Property information</h3>
+  
+                    <input type="hidden" class="form-control" name="propertyId" id="propertyId" formControlName="propertyId" [@valid]="form.get('propertyId')?.valid" aria-describedby="text">
+
                     <div class="form-group">
                         <label for="streetName">Street name</label>
                         <input type="text" class="form-control" name="streetName" id="streetName" formControlName="streetName" [@valid]="form.get('streetName')?.valid" aria-describedby="text" placeholder="Street name">
@@ -66,10 +69,17 @@
                         <small *ngIf="!form.get('phoneNumber')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Required field, Maximum 15 characters allowed</small>
                     </div>
 
-                    <button (click)="onSubmitPropertyForm()" type="submit" class="btn btn-success">Submit</button>
+                    <ng-container *ngIf="isCreateMode; else editButtonActive">
+                        <button (click)="onSubmitPropertyForm()" type="submit" class="btn btn-success">Submit</button>
+                    </ng-container>
+                    
+                    <ng-template #editButtonActive>
+                        <button (click)="onEditPropertyForm()" type="submit" class="btn btn-success">Edit</button>
+                      </ng-template>
+
                     <button (click)="onClosePropertyForm()" type="button" class="btn btn-danger ml-3">Cancel</button>
                 </div>
-                <div *ngIf="!isFormVisible">
+                <div *ngIf="!isFormVisible ">
                     <button (click)="onAddProperty()" type="button" class="btn btn-success">Create property</button>
                 </div>
             </form>

@@ -24,6 +24,7 @@ import { Owner } from 'src/app/shared/interface/owner';
 export class CreatepropertyComponent implements OnInit {
 
   public isFormVisible: boolean = false;
+  public isCreateMode: boolean = true;
 
   constructor(private _propertyService: PropertiesService) { }
 
@@ -31,6 +32,7 @@ export class CreatepropertyComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
+      propertyId: new FormControl(),
       streetName: new FormControl(),
       streetNumber: new FormControl(),
       location: new FormControl(),
@@ -62,7 +64,21 @@ export class CreatepropertyComponent implements OnInit {
 
   onSubmit()
   {
+    
+  }
+
+  public onAddProperty()
+  {
+    console.log("Add property");
+    this.isFormVisible = true;
+    this.isCreateMode = true;
+    this.form.reset();
+  }
+
+  public onSubmitPropertyForm()
+  {
     this.form = new FormGroup({
+      propertyId: new FormControl(this.form.get("propertyId")?.value),
       streetName: new FormControl(this.form.get("streetName")?.value, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
       streetNumber: new FormControl(this.form.get("streetNumber")?.value, [Validators.required]),
       location: new FormControl(this.form.get("location")?.value, [Validators.required]),
@@ -78,28 +94,10 @@ export class CreatepropertyComponent implements OnInit {
 
     if(this.form.valid)
     { 
-      let street: Street = {
-        name: this.form.controls.streetName.value,
-        number: this.form.controls.streetNumber.value,
-      };
-
-      let loc: Location = {
-        street: street,
-        city: this.form.controls.location.value,
-        country: this.getCountryByCity(this.form.controls.location.value)
-      };
-
-      let owner: Owner = {
-        firstName: this.form.controls.firstName.value,
-        lastName: this.form.controls.lastName.value,
-        email: this.form.controls.email.value,
-        phoneNumber: this.form.controls.phoneNumber.value
-      };
-
       const item : Property = {
         id: this._propertyService.PropertyItems.length,
-        location: loc,
-        owner: owner,
+        location: this.getLocationData(),
+        owner: this.getOwnerData(),
         status: this.form.controls.status.value,
         type: this.form.controls.type.value,
         rooms: this.form.controls.rooms.value,
@@ -115,15 +113,65 @@ export class CreatepropertyComponent implements OnInit {
     }
   }
 
-  public onAddProperty()
+  public onEditPropertyForm()
   {
-    console.log("Add property");
-    this.isFormVisible = true;
+    if(this.form.valid)
+    { 
+      const item : Property = {
+        id: this.form.controls.propertyId.value,
+        location: this.getLocationData(),
+        owner: this.getOwnerData(),
+        status: this.form.controls.status.value,
+        type: this.form.controls.type.value,
+        rooms: this.form.controls.rooms.value,
+        date: new Date(),
+        price: this.form.controls.price.value,
+        img: "",
+      }
+
+      let currentProp = this._propertyService.PropertyItems.filter(x => x.id === item.id)[0];
+      currentProp.location = item.location;
+      currentProp.owner = item.owner;
+      currentProp.status = item.status;
+      currentProp.type = item.type;
+      currentProp.rooms = item.rooms;
+      currentProp.date = new Date();
+      currentProp.price = item.price;
+
+      this.form.reset();
+      this.isFormVisible = false;
+      alert("Property edited successfully.");
+    }
   }
 
-  public onSubmitPropertyForm()
+  public getStreetData()
   {
+    let street: Street = {
+      name: this.form.controls.streetName.value,
+      number: this.form.controls.streetNumber.value,
+    };
+    return street;
+  }
 
+  public getLocationData()
+  {
+    let loc: Location = {
+      street: this.getStreetData(),
+      city: this.form.controls.location.value,
+      country: this.getCountryByCity(this.form.controls.location.value)
+    };
+    return loc;
+  }
+
+  public getOwnerData()
+  {
+    let owner: Owner = {
+      firstName: this.form.controls.firstName.value,
+      lastName: this.form.controls.lastName.value,
+      email: this.form.controls.email.value,
+      phoneNumber: this.form.controls.phoneNumber.value
+    };
+    return owner;
   }
 
   public onClosePropertyForm()
