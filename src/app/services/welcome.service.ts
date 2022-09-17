@@ -1,6 +1,9 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { api } from 'src/app/constants/api';
+import { serverPath } from 'src/app/constants/server';
+import { Welcome } from '../shared/interface/welcome';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +12,8 @@ export class WelcomeService {
 
   constructor(private _http: HttpClient) { }
 
-  getTexts():Observable<any>
+  getAll():Observable<any>
   {
-    return this._http.get("/assets/data/welcome.json");
+    return this._http.get<Welcome[]>(serverPath + api.welcome);
   }
 }
