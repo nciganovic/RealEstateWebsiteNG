@@ -1,6 +1,9 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { api } from 'src/app/constants/api';
+import { serverPath } from 'src/app/constants/server';
+import { Place } from '../shared/interface/place';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +12,8 @@ export class PlacesService {
 
   constructor(private _http:HttpClient) { }
 
-  getPopularPlaces():Observable<any>
+  getAll():Observable<any>
   {
-    return this._http.get('/assets/data/place.json');
+    return this._http.get<Place[]>(serverPath + api.place);
   }
 }

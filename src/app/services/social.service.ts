@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { api } from 'src/app/constants/api';
 import { serverPath } from 'src/app/constants/server';
+import { Social } from '../shared/interface/social';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,6 @@ export class SocialService {
 
   getAll():Observable<any>
   {
-    return this._http.get(serverPath + api.social);
+    return this._http.get<Social[]>(serverPath + api.social);
   }
 }

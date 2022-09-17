@@ -21,7 +21,7 @@ export class BestServicesComponent implements OnInit {
 
   ngOnInit(): void 
   {
-    this._bestservicesService.getBestServices().subscribe
+    this._bestservicesService.getAll().subscribe
     (
       (Response:Service[]) => 
       {

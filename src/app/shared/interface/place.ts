@@ -1,8 +1,8 @@
 export interface Place
 {
-    place:string,
+    country:string,
     img:string,
     city:string,
     extra:string,
-    id:string
+    nameId:string
 }

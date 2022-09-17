@@ -21,7 +21,7 @@ export class MostPopularPlacesComponent implements OnInit {
   ngOnInit(): void 
   {
 
-    this._popularPlacesService.getPopularPlaces().subscribe
+    this._popularPlacesService.getAll().subscribe
     (
       (Response:Place[]) => 
       {

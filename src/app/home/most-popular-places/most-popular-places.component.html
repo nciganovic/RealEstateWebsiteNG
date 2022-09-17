@@ -6,10 +6,10 @@
           <div *ngFor='let item of PopularPlaces;' id="place-cards" class="pt-4 col-3 w-100">
             <div>
                 <!-- branch-img -->
-                <a id="{{ item.id }}" routerLink="/properties">
+                <a id="{{ item.nameId }}" routerLink="/properties">
                 <div class="team-img {{ item.img }} place-card">
                     <div class="team-content">
-                        <h4 class="text-wh">{{ item.place }}</h4>
+                        <h4 class="text-wh">{{ item.country }}</h4>
                         <p class="team-meta">{{ item.city }}</p>
                     </div>
                 </div>
