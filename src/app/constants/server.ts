@@ -1,0 +1,1 @@
+export const serverPath = "http://localhost/RealEstateWebstie/backend/api/";
