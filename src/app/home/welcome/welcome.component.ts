@@ -25,7 +25,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void 
   {
-    this._welcomeService.getTexts().subscribe
+    this._welcomeService.getAll().subscribe
     (
       (Response:Welcome[]) => 
       {
