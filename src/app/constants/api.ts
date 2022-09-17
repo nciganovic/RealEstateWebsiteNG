@@ -1,3 +1,4 @@
 export const api = {
-    welcome: "welcome.php"
+    welcome: "welcome.php",
+    social: "social.php"
 }

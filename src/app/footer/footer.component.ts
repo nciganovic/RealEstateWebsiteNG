@@ -20,12 +20,12 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void 
   {
-    this._socialService.getSocial().subscribe
+    this._socialService.getAll().subscribe
     (
       (Response:Social[]) => 
       {
         this._socialItems = Response;
-        console.log(this._socialItems);
+        console.log("socail items =>", this._socialItems);
       },
       Error =>
       {
