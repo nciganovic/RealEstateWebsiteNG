@@ -12,8 +12,12 @@ const routes: Routes = [
   {path:'properties',component:FindpropertyComponent},
   {path:'properties/:id',component:SinglepropertyComponent},
   {path:'author',component:AuthorComponent},
-  {path:'not-found',component:NotfoundComponent},
-  {path:'**',redirectTo:'/not-found'}
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  //{path:'not-found',component:NotfoundComponent},
+  //{path:'**',redirectTo:'/not-found'}
 ];
 
 @NgModule({

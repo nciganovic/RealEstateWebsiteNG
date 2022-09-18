@@ -21,6 +21,7 @@ export interface PropertyRecive
     country: string,
     date: Date,
     email: string,
+    ownerId: number,
     firstName: string,
     img: string,
     lastName: string,

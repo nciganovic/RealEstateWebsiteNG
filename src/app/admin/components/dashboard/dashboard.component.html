@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-12 mt-3">
+            <h1 class="text-center">Admin panel</h1>
+            <h2 class="text-center mt-5">Properties</h2>
+
+            <a routerLink="/admin/property/create" class="btn btn-success">Create</a>
+            <table class="table table-hover mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Street</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let property of Properties; let indexOfelement=index;">
+                        <tr>
+                            <th scope="row">{{ indexOfelement + 1 }}</th>
+                            <td>{{ property.location.street.number }} {{ property.location.street.name }}</td>
+                            <td>{{ property.location.city }}</td>
+                            <td>{{ property.location.country }}</td>
+                            <td>{{ property.owner.firstName }} {{ property.owner.lastName }}</td>
+                            <td><a >Edit</a></td>
+                            <td><a >Delete</a></td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

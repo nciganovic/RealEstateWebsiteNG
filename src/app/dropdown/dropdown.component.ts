@@ -18,7 +18,7 @@ export class DropdownComponent implements OnInit {
 
   private _dropDownItems: string[] = [];
 
-  private readonly _maxRoomsCount: number = 6; 
+  private readonly _maxRoomsCount: number = 10; 
 
   constructor(private _propertyService: PropertiesService,
     private _statusService: StatusService,

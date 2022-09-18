@@ -23,6 +23,7 @@ import { PluralPipe } from './shared/pipes/plural.pipe';
 import { DotNumberPipe } from './shared/pipes/dot-number.pipe';
 import { SinglepropertyComponent } from './findproperty/singleproperty/singleproperty.component';
 import { SharedModule } from './shared/shared.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AdminModule,
     SharedModule,
   ],
   providers: [],
