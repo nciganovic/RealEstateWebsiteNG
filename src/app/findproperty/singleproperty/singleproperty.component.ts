@@ -23,7 +23,6 @@ export class SinglepropertyComponent implements OnInit {
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; 
-      console.log(this.id);
    });
   }
 

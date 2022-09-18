@@ -69,7 +69,6 @@ export class CreatepropertyComponent implements OnInit {
 
   public onAddProperty()
   {
-    console.log("Add property");
     this.isFormVisible = true;
     this.isCreateMode = true;
     this.form.reset();

@@ -1,8 +1,13 @@
-import { Property } from '../shared/interface/property';
+import { Property, PropertyRecive } from '../shared/interface/property';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Filter } from '../shared/interface/filter';
+import { api } from 'src/app/constants/api';
+import { serverPath } from 'src/app/constants/server';
+import { Street } from '../shared/interface/street';
+import { Location } from '../shared/interface/location';
+import { Owner } from '../shared/interface/owner';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +27,6 @@ export class PropertiesService {
 
   public get PropertyItems(): Property[]
   {
-
     return this._propertyItems;
   }
 
@@ -51,9 +55,9 @@ export class PropertiesService {
     return this._uniqueBedrooms;
   }
 
-  getProperties():Observable<any>
+  getAll():Observable<any>
   {
-    return this._http.get('/assets/data/properties.json');
+    return this._http.get<PropertyRecive[]>(serverPath + api.property);
   }
 
   getPropertyItemById(id: number): Property
@@ -63,21 +67,21 @@ export class PropertiesService {
 
   getPropertiesRequest()
   {
-    this.getProperties().subscribe
+    this.getAll().subscribe
     (
-      (Response:Property[]) => 
+      (Response:PropertyRecive[]) => 
       {
-        this._propertyItems = this._filteredPropertyItems = Response;
+        let propertyRecive: PropertyRecive[] = Response
+
+        for(let prop of propertyRecive)
+          this.PropertyItems.push(this.mapProperties(prop))
+
+        this._filteredPropertyItems = this.PropertyItems;
 
         this._uniqueTypes = this.getTypeUniqueValues(this._propertyItems);
         this._uniqueStatus = this.getStatusUniqueValues(this._propertyItems);
         this._uniqueLocations = this.getLocaitonUniqueValues(this._propertyItems);
-        this._uniqueBedrooms = this.getBedroomsUniqueValues(this._propertyItems);      
-      
-        console.log(this._uniqueTypes);
-        console.log(this._uniqueStatus);
-        console.log(this._uniqueLocations);
-        console.log(this._uniqueBedrooms);
+        this._uniqueBedrooms = this.getBedroomsUniqueValues(this._propertyItems);     
       },
       Error =>
       {
@@ -85,6 +89,41 @@ export class PropertiesService {
         return null;
       }
     )
+  }
+
+  public mapProperties(propRecive: PropertyRecive): Property
+  {
+    let street: Street = {
+      name: propRecive.streetName,
+      number: propRecive.streetNumber
+    };
+
+    let location: Location = {
+      street: street,
+      city: propRecive.city,
+      country: propRecive.country
+    };
+
+    let owner: Owner = {
+      firstName: propRecive.firstName,
+      lastName: propRecive.lastName,
+      email: propRecive.email,
+      phoneNumber: propRecive.phoneNumber
+    };
+
+    let propObj: Property = {
+      id: propRecive.id,
+      location: location,
+      owner: owner,
+      status: propRecive.status,
+      price: propRecive.price,
+      type: propRecive.type,
+      rooms: propRecive.rooms,
+      date: propRecive.date,
+      img: propRecive.img
+    };
+
+    return propObj; 
   }
 
   getTypeUniqueValues(propertyItems: Property[])

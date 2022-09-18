@@ -25,7 +25,6 @@ export class FooterComponent implements OnInit {
       (Response:Social[]) => 
       {
         this._socialItems = Response;
-        console.log("socail items =>", this._socialItems);
       },
       Error =>
       {

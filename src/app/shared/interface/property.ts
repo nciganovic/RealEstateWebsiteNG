@@ -13,3 +13,22 @@ export interface Property
     date: Date,
     img: string
 }
+
+export interface PropertyRecive
+{
+    id: number,
+    city: string,
+    country: string,
+    date: Date,
+    email: string,
+    firstName: string,
+    img: string,
+    lastName: string,
+    phoneNumber: string,
+    price: number,
+    rooms: number,
+    status: string,
+    streetName: string,
+    streetNumber: number,
+    type: string
+}

@@ -26,7 +26,6 @@ export class MostPopularPlacesComponent implements OnInit {
       (Response:Place[]) => 
       {
         this._popularPlaces = Response;
-        console.log(this._popularPlaces);
       },
       Error =>
       {

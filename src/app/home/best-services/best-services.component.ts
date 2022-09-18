@@ -26,7 +26,6 @@ export class BestServicesComponent implements OnInit {
       (Response:Service[]) => 
       {
         this._serviceItems = Response;
-        console.log(this._serviceItems);
       },
       Error =>
       {

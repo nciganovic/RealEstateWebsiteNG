@@ -1,4 +1,4 @@
-import { Property } from '../../shared/interface/property';
+import { Property, PropertyRecive } from '../../shared/interface/property';
 import { PropertiesService } from './../../services/properties.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
@@ -9,6 +9,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PropertyComponent implements OnInit {
 
+  private _properties: Property[] = [];
+
   @Input() editId: number = -1;
   @Output() editClicked = new EventEmitter();
 
@@ -16,18 +18,31 @@ export class PropertyComponent implements OnInit {
 
   ngOnInit(): void {
     window.scroll(0,0);
+    this.getPropertiesRequest();
   }
 
   public get Properties()
   {
-    
-    if(localStorage.getItem("removedItemIds"))
-    {
-      let removedItemIds: number[] = JSON.parse(localStorage.getItem("removedItemIds") ?? "");
-      return this._propertyService.PropertyItems.filter(x => removedItemIds.indexOf(x.id) === -1);
-    }
+    return this._properties;
+  }
 
-    return this._propertyService.PropertyItems;
+  getPropertiesRequest()
+  {
+    this._propertyService.getAll().subscribe
+    (
+      (Response:PropertyRecive[]) => 
+      {
+        let propertyRecive: PropertyRecive[] = Response
+
+        for(let prop of propertyRecive)
+          this._properties.push(this._propertyService.mapProperties(prop))
+      },
+      Error =>
+      {
+        alert("Internal server error, please try again later.");
+        return null;
+      }
+    )
   }
 
   public onEdit(event: Event, id: number)

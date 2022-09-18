@@ -8,31 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
 
-  constructor(private _propertyService: PropertiesService) { }
+  constructor() { }
 
   ngOnInit(): void 
   {
-    this._propertyService.getPropertiesRequest();
-  }
 
-  public get Statuses()
-  {
-    return this._propertyService.UniqueStatuses;
-  }
-
-  public get Locations()
-  {
-    return this._propertyService.UniqueLocations;
-  }
-
-  public get Types()
-  {
-    return this._propertyService.UniqueTypes;
-  }
-
-  public get Bedrooms()
-  {
-    return this._propertyService.UniqueBedrooms;
   }
 
 }

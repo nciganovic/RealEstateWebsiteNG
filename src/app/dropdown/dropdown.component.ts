@@ -21,9 +21,7 @@ export class DropdownComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.type);
-
-    this._propertyService.getPropertiesRequest();
+    //this._propertyService.getPropertiesRequest();
 
     if(this.type)
       this.getDataBasedOnType(this.type)
