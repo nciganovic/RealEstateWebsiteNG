@@ -18,11 +18,6 @@ export class PropertiesService {
 
   private _filteredPropertyItems : Property[] = [];
 
-  private _uniqueTypes: string[] = [];
-  private _uniqueBedrooms: number[] = [];
-  private _uniqueStatus: string[] = [];
-  private _uniqueLocations: string[] = [];
-
   constructor(private _http: HttpClient) { }
 
   public get PropertyItems(): Property[]
@@ -33,26 +28,6 @@ export class PropertiesService {
   public set PropertyItems(value: Property[])
   {
     this._propertyItems = value;
-  }
-
-  public get UniqueTypes()
-  {
-    return this._uniqueTypes;
-  }
-
-  public get UniqueStatuses()
-  {
-    return this._uniqueStatus;
-  }
-
-  public get UniqueLocations()
-  {
-    return this._uniqueLocations;
-  }
-
-  public get UniqueBedrooms()
-  {
-    return this._uniqueBedrooms;
   }
 
   getAll():Observable<any>
@@ -77,11 +52,6 @@ export class PropertiesService {
           this.PropertyItems.push(this.mapProperties(prop))
 
         this._filteredPropertyItems = this.PropertyItems;
-
-        this._uniqueTypes = this.getTypeUniqueValues(this._propertyItems);
-        this._uniqueStatus = this.getStatusUniqueValues(this._propertyItems);
-        this._uniqueLocations = this.getLocaitonUniqueValues(this._propertyItems);
-        this._uniqueBedrooms = this.getBedroomsUniqueValues(this._propertyItems);     
       },
       Error =>
       {
@@ -124,59 +94,6 @@ export class PropertiesService {
     };
 
     return propObj; 
-  }
-
-  getTypeUniqueValues(propertyItems: Property[])
-  {
-    let uniqueTypes: string[] = [];
-    propertyItems.forEach(element => {
-      if(!uniqueTypes.includes(element.type))
-      {
-        uniqueTypes.push(element.type);
-      }
-    });
-
-    return uniqueTypes;
-  }
-
-  getBedroomsUniqueValues(propertyItems: Property[])
-  {
-    let uniqueBedrooms: number[] = [];
-    propertyItems.forEach(element => {
-      if(!uniqueBedrooms.includes(Number(element.rooms)))
-      {
-        uniqueBedrooms.push(Number(element.rooms));
-      }
-    });
-
-    uniqueBedrooms.sort((x, y) => x > y ? 1 : -1);
-    return uniqueBedrooms;
-  }
-
-  getLocaitonUniqueValues(propertyItems: Property[])
-  {
-    let uniqueLocations: string[] = [];
-    propertyItems.forEach(element => {
-      if(!uniqueLocations.includes(element.location.city))
-      {
-        uniqueLocations.push(element.location.city);
-      }
-    });
-
-    return uniqueLocations;
-  }
-
-  getStatusUniqueValues(propertyItems: Property[])
-  {
-    let uniqueStatus: string[] = [];
-    propertyItems.forEach(element => {
-      if(!uniqueStatus.includes(element.status))
-      {
-        uniqueStatus.push(element.status);
-      }
-    });
-
-    return uniqueStatus;
   }
 
   filterProperties(filter: Filter): Property[]
@@ -239,18 +156,5 @@ export class PropertiesService {
     let index = this.PropertyItems.indexOf(property) ;
     this.PropertyItems.splice(index, 1);
     this._filteredPropertyItems = this.PropertyItems;
-
-    if(!localStorage.getItem("removedItemIds"))
-    {
-      let initalRemoveArr:number[] = [];
-      initalRemoveArr.push(Number(id));
-      localStorage.setItem("removedItemIds", JSON.stringify(initalRemoveArr));
-    }
-    else
-    {
-      let removedIds = JSON.parse(localStorage.getItem("removedItemIds") ?? "") as number[]; 
-      removedIds.push(Number(id));
-      localStorage.setItem("removedItemIds", JSON.stringify(removedIds));
-    }
   }
 }

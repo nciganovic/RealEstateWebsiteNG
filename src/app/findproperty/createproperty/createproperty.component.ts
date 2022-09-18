@@ -49,17 +49,17 @@ export class CreatepropertyComponent implements OnInit {
 
   public get Locations(): string[]
   {
-    return this._propertyService.getLocaitonUniqueValues(this._propertyService.PropertyItems);
+    return [];
   }
 
   public get Statuses(): string[]
   {
-    return this._propertyService.getStatusUniqueValues(this._propertyService.PropertyItems);
+    return [];
   }
 
   public get Types(): string[]
   {
-    return this._propertyService.getTypeUniqueValues(this._propertyService.PropertyItems);
+    return [];
   }
 
   onSubmit()
