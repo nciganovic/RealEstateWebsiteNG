@@ -4,5 +4,8 @@ export const api = {
     services: "service.php",
     place: "place.php",
     menu: "menu.php",
-    property: "property.php"
+    property: "property.php",
+    city: "city.php",
+    type: "type.php",
+    status: "status.php"
 }
