@@ -40,27 +40,6 @@ export class PropertiesService {
     return this._propertyItems.filter(x => x.id === id)[0];
   }
 
-  getPropertiesRequest()
-  {
-    this.getAll().subscribe
-    (
-      (Response:PropertyRecive[]) => 
-      {
-        let propertyRecive: PropertyRecive[] = Response
-
-        for(let prop of propertyRecive)
-          this.PropertyItems.push(this.mapProperties(prop))
-
-        this._filteredPropertyItems = this.PropertyItems;
-      },
-      Error =>
-      {
-        alert("Internal server error, please try again later.");
-        return null;
-      }
-    )
-  }
-
   public mapProperties(propRecive: PropertyRecive): Property
   {
     let street: Street = {
@@ -94,60 +73,6 @@ export class PropertiesService {
     };
 
     return propObj; 
-  }
-
-  filterProperties(filter: Filter): Property[]
-  { 
-    let propTmp = this._filteredPropertyItems.map(item => Object.assign({}, item));
-
-    if(filter.status !== "status")
-    {
-      let itemsToRemove:Property[] =  propTmp.filter(x => x.status == filter.status);  
-      propTmp = propTmp.filter(x => itemsToRemove.indexOf(x) !== -1);
-    }
-
-    if(filter.type !== "type")
-    {
-      let itemsToRemove:Property[] = propTmp.filter(x => x.type == filter.type);  
-      propTmp  = propTmp .filter(x => itemsToRemove.indexOf(x) !== -1);
-    }
-
-    if(filter.location !== "location")
-    {
-      let itemsToRemove:Property[] = propTmp .filter(x => x.location.city == filter.location); 
-      propTmp  = propTmp .filter(x => itemsToRemove.indexOf(x) !== -1);
-    } 
-
-    if(filter.numberOfRooms !== "bedrooms")
-    {
-      let itemsToRemove:Property[] = propTmp .filter(x => x.rooms == Number(filter.numberOfRooms));
-      propTmp  = propTmp .filter(x => itemsToRemove.indexOf(x) !== -1);
-    }
-
-    let itemsToRemove:Property[] = propTmp .filter(x => x.price > Number(filter.minPrice) 
-                                                                && x.price < Number(filter.maxPrice));
-    propTmp  = propTmp .filter(x => itemsToRemove.indexOf(x) !== -1);
-
-    if(filter.orderBy !== "Order By:")
-    {
-      if(filter.orderBy == "Acsending price")
-        propTmp .sort(((x, y) => x.price > y.price ? 1 : -1));
-      else if(filter.orderBy == "Decsending price")
-        propTmp .sort(((x, y) => x.price < y.price ? 1 : -1));
-      else if(filter.orderBy == "Newest")
-        propTmp .sort(((x, y) => x.date < y.date ? 1 : -1));
-      else if(filter.orderBy == "Oldest")
-        propTmp .sort(((x, y) => x.date > y.date ? 1 : -1));
-    }
-  
-    return propTmp;
-  }
-
-  searchProperties(search: string): Property[]
-  {
-    let propTmp = this._filteredPropertyItems.map(item => Object.assign({}, item));
-    let searchedItems =  propTmp.filter(x => (x.location.street.name.toLowerCase() + x.location.street.number).includes(search.toLowerCase()));  
-    return searchedItems;
   }
 
   removeProperty(id: string): void

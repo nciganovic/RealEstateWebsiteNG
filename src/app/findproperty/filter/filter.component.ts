@@ -1,6 +1,6 @@
 import { Filter } from '../../shared/interface/filter';
 import { PropertyComponent } from './../property/property.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PropertiesService } from 'src/app/services/properties.service';
 
 @Component({
@@ -11,7 +11,8 @@ import { PropertiesService } from 'src/app/services/properties.service';
 export class FilterComponent implements OnInit {
 
   private _ddPriceStatus: boolean = false;
-  private _ddRoomStatus: boolean = false;
+  @Output() filterClicked = new EventEmitter();
+  @Output() searchClicked = new EventEmitter();
 
   constructor(private _propertyService: PropertiesService) { }
 
@@ -23,25 +24,12 @@ export class FilterComponent implements OnInit {
     return this._ddPriceStatus;
   }
 
-  public get ddRoomStatus()
-  {
-    return this._ddRoomStatus;
-  }
-
   public toggleDropdownPrice()
   {
     if(this._ddPriceStatus)
       this._ddPriceStatus = false;
     else
       this._ddPriceStatus = true;
-  }
-
-  public toggleDropdownRoom()
-  {
-    if(this._ddRoomStatus)
-      this._ddRoomStatus = false;
-    else
-      this._ddRoomStatus = true;
   }
 
   public onFilter() {
@@ -56,12 +44,14 @@ export class FilterComponent implements OnInit {
       minPrice: <string>(<HTMLInputElement>document.getElementById("min-price")).value, 
     };
 
-    this._propertyService.PropertyItems = this._propertyService.filterProperties(filter);
+    this.filterClicked.emit(filter);
+
+    //this._propertyService.PropertyItems = this._propertyService.filterProperties(filter);
   }
 
   public onSearch()
   {
     let search: string = <string>(<HTMLInputElement>document.getElementsByName("search")[0]).value.trim();
-    this._propertyService.PropertyItems = this._propertyService.searchProperties(search);
+    this.searchClicked.emit(search);
   }
 }

@@ -108,7 +108,7 @@ export class DropdownComponent implements OnInit {
       (Response:City[]) => 
       {
         this._dropDownItems = Response.map(x => x.name);
-        this._dropDownItems.unshift("City");
+        this._dropDownItems.unshift("Location");
       },
       Error =>
       {
