@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Property } from 'src/app/shared/interface/property';
+import { Property, PropertyRecive } from 'src/app/shared/interface/property';
 import { PropertiesService } from 'src/app/services/properties.service';
 
 @Component({
@@ -12,10 +12,10 @@ export class SinglepropertyComponent implements OnInit {
 
   id: number = 0;
   private sub: any;
-  private property: Property = {} as Property;
+  private _property: Property;
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private propertiesService: PropertiesService) {
+    private _propertyService: PropertiesService) {
     
       
    }
@@ -24,25 +24,33 @@ export class SinglepropertyComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; 
    });
+
+   this.getPropertyById(this.id)
   }
 
-    public get SingleProperty(): Property
-    {
-      let item;
+  public get SingleProperty(): Property
+  {
+    return this._property;
+  }
 
-      if(!localStorage.getItem("items"))
+  getPropertyById(id: number)
+  {
+    this._propertyService.getById(id).subscribe
+    (
+      (Response:PropertyRecive) => 
       {
-        localStorage.setItem("items", JSON.stringify(this.propertiesService.PropertyItems))
-        item = this.propertiesService.PropertyItems[this.id]
-      }
-      else
-      {
-        let items = JSON.parse(localStorage.getItem("items") ?? "") as Property[];
-        item = items.filter(x => x.id == this.id)[0];
-      }
+        let propertyRecive: PropertyRecive = Response
+ 
+        this._property = this._propertyService.mapProperties(propertyRecive);
 
-      if(!item)
-        this.router.navigate(['/not-found']);
-      return item;
-    }
+        if(!this._property.id)
+          this.router.navigate(['/not-found']);
+      },
+      Error =>
+      {
+        alert("Internal server error, please try again later.");
+        return null;
+      }
+    )
+  }
 }

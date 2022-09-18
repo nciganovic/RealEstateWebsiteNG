@@ -35,9 +35,9 @@ export class PropertiesService {
     return this._http.get<PropertyRecive[]>(serverPath + api.property);
   }
 
-  getPropertyItemById(id: number): Property
+  getById(id: number):Observable<any> 
   {
-    return this._propertyItems.filter(x => x.id === id)[0];
+    return this._http.get<PropertyRecive>(serverPath + api.property + "/" + id);
   }
 
   public mapProperties(propRecive: PropertyRecive): Property
