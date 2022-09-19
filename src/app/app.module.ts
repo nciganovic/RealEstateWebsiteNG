@@ -18,7 +18,6 @@ import { FilterComponent } from './findproperty/filter/filter.component';
 import { PropertyComponent } from './findproperty/property/property.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { CreatepropertyComponent } from './findproperty/createproperty/createproperty.component';
 import { PluralPipe } from './shared/pipes/plural.pipe';
 import { DotNumberPipe } from './shared/pipes/dot-number.pipe';
 import { SinglepropertyComponent } from './findproperty/singleproperty/singleproperty.component';
@@ -42,7 +41,6 @@ import { AdminModule } from './admin/admin.module';
     PropertyComponent,
     DropdownComponent,
     NotfoundComponent,
-    CreatepropertyComponent,
     PluralPipe,
     DotNumberPipe,
     SinglepropertyComponent

@@ -33,12 +33,6 @@
                     <span>
                         <i class="fa fa-user mr-2 black"></i> {{ item.owner.firstName }} {{ item.owner.lastName }}
                     </span>
-                    <span>
-                        <a href="#" (click)="onEdit($event, item.id)">Edit <i class="fas fa-arrow-right"></i></a>
-                    </span>
-                    <span>
-                        <a href="#" class="remove-item" id="{{ item.id }}" (click)="onRemove($event, item.id)">Remove <i class="fas fa-arrow-right"></i></a>
-                    </span>
                 </div>
             </div>
         </div>

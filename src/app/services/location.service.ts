@@ -16,4 +16,9 @@ export class LocationService {
   {
     return this._http.post<Location>(serverPath + api.location, data);
   }
+
+  update(id: number, data: LocationToSend):Observable<any>
+  {
+    return this._http.patch<Location>(serverPath + api.location + "/" + id, data);
+  }
 }

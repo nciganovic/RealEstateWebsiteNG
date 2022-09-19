@@ -22,6 +22,10 @@ const routes: Routes = [
     path: "property/create",
     component: CreatePropertyComponent
   },
+  {
+    path: "property/edit/:id",
+    component: CreatePropertyComponent
+  },
 ];
 
 @NgModule({

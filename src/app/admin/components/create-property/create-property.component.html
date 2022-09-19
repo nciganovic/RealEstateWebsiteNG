@@ -3,7 +3,12 @@
         <div class="col-8 mt-5 mb-5">
             <form action="#" method="#" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div>
-                    <h1 class="text-center m-3">Create property</h1>
+                    <ng-container *ngIf="!isEditMode; else editProp">
+                        <h1 class="text-center m-3">Create property</h1>
+                    </ng-container>
+                    <ng-template #editProp>
+                        <h1 class="text-center m-3">Edit property</h1>
+                    </ng-template>
 
                     <input type="hidden" class="form-control" name="propertyId" id="propertyId" formControlName="propertyId" [@valid]="form.get('propertyId')?.valid" aria-describedby="text">
                     
@@ -27,14 +32,14 @@
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" formControlName="status" [@valid]="form.get('status')?.valid" name="status">
-                            <option selected="selected" value="0">Select status</option>
+                            <option value="">Select status</option>
                             <option *ngFor="let status of Statuses;" value="{{status.id}}">{{status.name}}</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="owner">Owner</label>
                         <select class="form-control" formControlName="owner" [@valid]="form.get('owner')?.valid" name="owner">
-                            <option selected="selected" value="0">Select owner</option>
+                            <option value="">Select owner</option>
                             <option *ngFor="let owner of Owners;" value="{{owner.id}}">{{owner.firstName}} {{owner.lastName}}</option>
                         </select>
                     </div>
@@ -46,7 +51,7 @@
                     <div class="form-group">
                         <label for="type">Type</label>
                         <select formControlName="type" class="form-control" [@valid]="form.get('type')?.valid" name="type">
-                            <option selected="selected" value="0">Select type</option>
+                            <option value="">Select type</option>
                             <option *ngFor="let type of Types;" value="{{type.id}}">{{type.name}}</option>
                         </select>
                     </div>

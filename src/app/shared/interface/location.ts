@@ -2,6 +2,7 @@ import { Street } from "./street";
 
 export interface Location
 {
+    id: number,
     street: Street,
     city: string,
     country: string

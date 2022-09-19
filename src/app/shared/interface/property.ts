@@ -17,6 +17,7 @@ export interface Property
 export interface PropertyRecive
 {
     id: number,
+    cityId: number,
     city: string,
     country: string,
     date: Date,
@@ -28,10 +29,13 @@ export interface PropertyRecive
     phoneNumber: string,
     price: number,
     rooms: number,
+    statusId: number,
     status: string,
     streetName: string,
     streetNumber: number,
-    type: string
+    typeId: number,
+    type: string,
+    locationId: number
 }
 
 export interface PropertyToSend

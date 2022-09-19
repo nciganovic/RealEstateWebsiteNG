@@ -41,4 +41,33 @@ export class DashboardComponent implements OnInit {
       }
     )
   }
+
+  removePropertyRequest(id: number)
+  {
+    this._propertyService.remove(id).subscribe
+    (
+      (Response:PropertyRecive[]) => 
+      {
+        
+
+      },
+      Error =>
+      {
+        alert("Internal server error, please try again later.");
+        return null;
+      }
+    )
+  }
+
+  deletePropertyClick($event: Event, id: number)
+  {
+    $event.preventDefault();
+    this.removePropertyRequest(id);
+    let propToRemove = this._properties.filter(x => x.id == id)[0];
+    if(confirm("Are you sure you want to remove property from " + propToRemove.location.street.number + " " + propToRemove.location.street.name + ", " + propToRemove.location.city))
+    {
+      let idx = this._properties.indexOf(propToRemove);
+      this._properties.splice(idx, 1);
+    } 
+  }
 }

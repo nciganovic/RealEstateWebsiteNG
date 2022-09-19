@@ -12,11 +12,6 @@ export class PropertyComponent implements OnInit {
 
   private _properties: Property[] = [];
 
-  private _defaultFilter: Filter;
-
-  @Input() editId: number = -1;
-  @Output() editClicked = new EventEmitter();
-
   constructor(private _propertyService: PropertiesService) { }
 
   ngOnInit(): void {
@@ -98,19 +93,5 @@ export class PropertyComponent implements OnInit {
   searchProperties(search: string)
   {
     this._properties = this._properties.filter(x => (x.location.street.name.toLowerCase() + x.location.street.number).includes(search.toLowerCase())); 
-  }
-
-  public onEdit(event: Event, id: number)
-  {
-    event.preventDefault();
-    this.editId = id;
-    this.editClicked.emit(id.toString());
-  }
-
-  public onRemove(event: Event, id: number)
-  {
-    event.preventDefault();
-    if(confirm("Are you sure you want to remove this property?"))
-      this._propertyService.removeProperty(id.toString());
   }
 }

@@ -12,8 +12,10 @@ import { Owner } from 'src/app/shared/interface/owner';
 import { LocationToSend } from 'src/app/shared/interface/location';
 import { LocationService } from 'src/app/services/location.service';
 import { Location } from '@angular/common';
-import { Property, PropertyToSend } from 'src/app/shared/interface/property';
+import { Property, PropertyRecive, PropertyToSend } from 'src/app/shared/interface/property';
 import { PropertiesService } from 'src/app/services/properties.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-create-property',
@@ -30,12 +32,17 @@ import { PropertiesService } from 'src/app/services/properties.service';
 })
 export class CreatePropertyComponent implements OnInit {
 
+  private _property: Property;
   private _types: Type[] = [];
   private _statuses: Status[] = [];
   private _cities: City[] = [];
   private _owners: Owner[] = [];
 
+  private _id: number;
+  private sub: any;
+
   public form!:FormGroup;
+  public isEditMode: boolean = false;
 
   constructor(private _typeService: TypeService,
     private _statusService: StatusService,
@@ -43,9 +50,15 @@ export class CreatePropertyComponent implements OnInit {
     private _ownerService: OwnerService,
     private _locationService: LocationService,
     private _propertiesService: PropertiesService,
-    private _location: Location) { }
+    private _location: Location,
+    private _route: ActivatedRoute, 
+    private _router: Router) { }
 
   ngOnInit(): void {
+    this.sub = this._route.params.subscribe(params => {
+      this._id = +params['id']; 
+    });
+
     this.form = new FormGroup({
       propertyId: new FormControl(),
       streetName: new FormControl(),
@@ -58,10 +71,29 @@ export class CreatePropertyComponent implements OnInit {
       owner: new FormControl(),
     });
 
+    if(this._id)
+    {
+      this._getPropertyRequest();
+      this.isEditMode = true;
+    }
+    else
+    {
+      this.form.controls.location.setValue("");
+      this.form.controls.status.setValue("");
+      this.form.controls.owner.setValue("");
+      this.form.controls.type.setValue("");
+    }
+
+    this._getPropertyRequest();
     this._getCityRequest();
     this._getStatusRequest();
     this._getTypeRequest();
     this._getOwnersRequest();
+  }
+
+  public get Property()
+  {
+    return this._property;
   }
 
   public get Types(): Type[]
@@ -106,7 +138,10 @@ export class CreatePropertyComponent implements OnInit {
         cityId: this.form.controls.location.value,
       };
 
-      this._postLocationRequest(location, this.form);
+      if(this._id)
+        this._patchLocationRequest(location, this.form);
+      else
+        this._postLocationRequest(location, this.form);
     }
   }
 
@@ -179,6 +214,34 @@ export class CreatePropertyComponent implements OnInit {
     )
   }
 
+  private _getPropertyRequest()
+  {
+    this._propertiesService.getById(this._id).subscribe
+    (
+      (Response:PropertyRecive) => 
+      {
+        if(!this._id)
+          return;
+
+        this._property = this._propertiesService.mapProperties(Response);
+
+        this.form.controls.streetName.setValue(Response.streetName);
+        this.form.controls.streetNumber.setValue(Response.streetNumber);
+        this.form.controls.location.setValue(Response.cityId);
+        this.form.controls.status.setValue(Response.statusId);
+        this.form.controls.owner.setValue(Response.ownerId);
+        this.form.controls.price.setValue(Response.price);
+        this.form.controls.type.setValue(Response.typeId);
+        this.form.controls.rooms.setValue(Response.rooms);
+      },
+      Error =>
+      {
+        alert("Internal server error, please try again later.");
+        return null;
+      }
+    )
+  }
+
   private _postLocationRequest(dataToSend: LocationToSend, form: FormGroup)
   {
     this._locationService.add(dataToSend).subscribe({
@@ -201,11 +264,46 @@ export class CreatePropertyComponent implements OnInit {
     })
   }
 
+  private _patchLocationRequest(dataToSend: LocationToSend, form: FormGroup)
+  {
+    this._locationService.update(this._property.location.id ?? -1, dataToSend).subscribe({
+      next: res =>{
+        let locationId = res;
+
+        if(this._id)
+          locationId = this._property.location.id;
+
+        let propertyData: PropertyToSend = {
+          locationId: locationId,
+          statusId: form.controls.status.value,
+          price: form.controls.price.value,
+          typeId: form.controls.type.value,
+          rooms: form.controls.rooms.value,
+          ownerId: form.controls.owner.value,
+          date: new Date(),
+          img: "h30.jpg"
+        };
+
+        this._patchPropertyRequset(propertyData);
+      }
+    })
+  }
+
   private _postPropertyRequset(dataToSend: PropertyToSend)
   {
     this._propertiesService.add(dataToSend).subscribe({
       next: res =>{
         alert("Property added successfully!");
+        this._location.back();
+      }
+    })
+  }
+
+  private _patchPropertyRequset(dataToSend: PropertyToSend)
+  {
+    this._propertiesService.update(this._id, dataToSend).subscribe({
+      next: res =>{
+        alert("Property updated successfully!");
         this._location.back();
       }
     })

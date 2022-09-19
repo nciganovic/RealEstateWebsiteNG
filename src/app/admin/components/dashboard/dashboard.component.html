@@ -25,8 +25,8 @@
                             <td>{{ property.location.city }}</td>
                             <td>{{ property.location.country }}</td>
                             <td>{{ property.owner.firstName }} {{ property.owner.lastName }}</td>
-                            <td><a >Edit</a></td>
-                            <td><a >Delete</a></td>
+                            <td><a [routerLink]="['/admin/property/edit', property.id]">Edit</a></td>
+                            <td><a (click)="deletePropertyClick($event, property.id)">Delete</a></td>
                         </tr>
                     </ng-container>
                 </tbody>

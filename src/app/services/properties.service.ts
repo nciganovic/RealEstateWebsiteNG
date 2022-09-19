@@ -2,7 +2,6 @@ import { Property, PropertyRecive, PropertyToSend } from '../shared/interface/pr
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Filter } from '../shared/interface/filter';
 import { api } from 'src/app/constants/api';
 import { serverPath } from 'src/app/constants/server';
 import { Street } from '../shared/interface/street';
@@ -43,6 +42,16 @@ export class PropertiesService {
     return this._http.post<PropertyRecive>(serverPath + api.property, dataToSend);
   }
 
+  update(id: number, dataToSend: PropertyToSend):Observable<any> 
+  {
+    return this._http.patch<PropertyRecive>(serverPath + api.property + "/" + id, dataToSend);
+  }
+
+  remove(id: number):Observable<any> 
+  {
+    return this._http.delete<PropertyRecive>(serverPath + api.property + "/" + id);
+  }
+
   public mapProperties(propRecive: PropertyRecive): Property
   {
     let street: Street = {
@@ -51,6 +60,7 @@ export class PropertiesService {
     };
 
     let location: Location = {
+      id: propRecive.locationId,
       street: street,
       city: propRecive.city,
       country: propRecive.country
@@ -76,12 +86,5 @@ export class PropertiesService {
     };
 
     return propObj; 
-  }
-
-  removeProperty(id: string): void
-  {
-    let property = this.PropertyItems.filter(x => x.id == Number(id))[0];
-    let index = this.PropertyItems.indexOf(property) ;
-    this.PropertyItems.splice(index, 1);
   }
 }
