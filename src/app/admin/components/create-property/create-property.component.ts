@@ -7,6 +7,13 @@ import { CityService } from 'src/app/services/city.service';
 import { City } from 'src/app/shared/interface/city';
 import { Type } from 'src/app/shared/interface/type';
 import { Status } from 'src/app/shared/interface/status';
+import { OwnerService } from 'src/app/services/owner.service';
+import { Owner } from 'src/app/shared/interface/owner';
+import { LocationToSend } from 'src/app/shared/interface/location';
+import { LocationService } from 'src/app/services/location.service';
+import { Location } from '@angular/common';
+import { Property, PropertyToSend } from 'src/app/shared/interface/property';
+import { PropertiesService } from 'src/app/services/properties.service';
 
 @Component({
   selector: 'app-create-property',
@@ -26,12 +33,17 @@ export class CreatePropertyComponent implements OnInit {
   private _types: Type[] = [];
   private _statuses: Status[] = [];
   private _cities: City[] = [];
+  private _owners: Owner[] = [];
 
   public form!:FormGroup;
 
   constructor(private _typeService: TypeService,
     private _statusService: StatusService,
-    private _cityService: CityService) { }
+    private _cityService: CityService,
+    private _ownerService: OwnerService,
+    private _locationService: LocationService,
+    private _propertiesService: PropertiesService,
+    private _location: Location) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -43,15 +55,13 @@ export class CreatePropertyComponent implements OnInit {
       price: new FormControl(),
       type: new FormControl(),
       rooms: new FormControl(),
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      email: new FormControl(),
-      phoneNumber: new FormControl(),
+      owner: new FormControl(),
     });
 
     this._getCityRequest();
     this._getStatusRequest();
     this._getTypeRequest();
+    this._getOwnersRequest();
   }
 
   public get Types(): Type[]
@@ -69,6 +79,11 @@ export class CreatePropertyComponent implements OnInit {
     return this._cities;
   }
 
+  public get Owners(): Owner[]
+  {
+    return this._owners;
+  }
+
   onSubmitPropertyForm()
   {
     this.form = new FormGroup({
@@ -80,13 +95,21 @@ export class CreatePropertyComponent implements OnInit {
       price: new FormControl(this.form.get("price")?.value, [Validators.required, Validators.min(100), Validators.max(1000000)]),
       type: new FormControl(this.form.get("type")?.value, [Validators.required]),
       rooms: new FormControl(this.form.get("rooms")?.value, [Validators.required, Validators.min(1), Validators.max(10)]),
-      firstName: new FormControl(this.form.get("firstName")?.value, [Validators.required, Validators.maxLength(30)]),
-      lastName: new FormControl(this.form.get("lastName")?.value, [Validators.required, Validators.maxLength(30)]),
-      email: new FormControl(this.form.get("email")?.value, [Validators.required, Validators.email]),
-      phoneNumber: new FormControl(this.form.get("phoneNumber")?.value, [Validators.required, Validators.maxLength(15)]),
+      owner: new FormControl(this.form.get("owner")?.value, [Validators.required]),
     });
+
+    if(this.form.valid)
+    {
+      let location: LocationToSend = {
+        streetName: this.form.controls.streetName.value,
+        streetNumber: this.form.controls.streetNumber.value,
+        cityId: this.form.controls.location.value,
+      };
+
+      this._postLocationRequest(location, this.form);
+    }
   }
-  
+
   onSubmit()
   {
 
@@ -138,5 +161,53 @@ export class CreatePropertyComponent implements OnInit {
         return null;
       }
     )
+  }
+
+  private _getOwnersRequest()
+  {
+    this._ownerService.getAll().subscribe
+    (
+      (Response:Owner[]) => 
+      {
+        this._owners = Response;
+      },
+      Error =>
+      {
+        alert("Internal server error, please try again later.");
+        return null;
+      }
+    )
+  }
+
+  private _postLocationRequest(dataToSend: LocationToSend, form: FormGroup)
+  {
+    this._locationService.add(dataToSend).subscribe({
+      next: res =>{
+        let newlyCreatedLocationId = res;
+
+        let propertyData: PropertyToSend = {
+          locationId: newlyCreatedLocationId,
+          statusId: form.controls.status.value,
+          price: form.controls.price.value,
+          typeId: form.controls.type.value,
+          rooms: form.controls.rooms.value,
+          ownerId: form.controls.owner.value,
+          date: new Date(),
+          img: "h30.jpg"
+        };
+
+        this._postPropertyRequset(propertyData);
+      }
+    })
+  }
+
+  private _postPropertyRequset(dataToSend: PropertyToSend)
+  {
+    this._propertiesService.add(dataToSend).subscribe({
+      next: res =>{
+        alert("Property added successfully!");
+        this._location.back();
+      }
+    })
   }
 }

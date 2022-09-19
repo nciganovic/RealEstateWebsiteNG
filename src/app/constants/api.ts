@@ -7,5 +7,7 @@ export const api = {
     property: "property.php",
     city: "city.php",
     type: "type.php",
-    status: "status.php"
+    status: "status.php",
+    owner: "owner.php",
+    location: "location.php"
 }

@@ -1,4 +1,4 @@
-import { Property, PropertyRecive } from '../shared/interface/property';
+import { Property, PropertyRecive, PropertyToSend } from '../shared/interface/property';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,8 +15,6 @@ import { Owner } from '../shared/interface/owner';
 export class PropertiesService {
 
   private _propertyItems: Property[] = [];
-
-  private _filteredPropertyItems : Property[] = [];
 
   constructor(private _http: HttpClient) { }
 
@@ -38,6 +36,11 @@ export class PropertiesService {
   getById(id: number):Observable<any> 
   {
     return this._http.get<PropertyRecive>(serverPath + api.property + "/" + id);
+  }
+
+  add(dataToSend: PropertyToSend):Observable<any> 
+  {
+    return this._http.post<PropertyRecive>(serverPath + api.property, dataToSend);
   }
 
   public mapProperties(propRecive: PropertyRecive): Property
@@ -80,6 +83,5 @@ export class PropertiesService {
     let property = this.PropertyItems.filter(x => x.id == Number(id))[0];
     let index = this.PropertyItems.indexOf(property) ;
     this.PropertyItems.splice(index, 1);
-    this._filteredPropertyItems = this.PropertyItems;
   }
 }

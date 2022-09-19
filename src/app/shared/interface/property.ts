@@ -33,3 +33,16 @@ export interface PropertyRecive
     streetNumber: number,
     type: string
 }
+
+export interface PropertyToSend
+{
+    id?: number,
+    locationId: number,
+    statusId: number,
+    price: number,
+    typeId: number,
+    rooms: number,
+    ownerId: number,
+    date: Date,
+    img: string
+}

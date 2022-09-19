@@ -6,3 +6,10 @@ export interface Location
     city: string,
     country: string
 }
+
+export interface LocationToSend
+{
+    streetName: string,
+    streetNumber: number,
+    cityId: number,
+}

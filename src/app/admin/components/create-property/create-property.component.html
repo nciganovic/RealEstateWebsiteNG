@@ -1,80 +1,60 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
-        <div class="col-12 mt-5 mb-5">
+        <div class="col-8 mt-5 mb-5">
             <form action="#" method="#" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div>
                     <h1 class="text-center m-3">Create property</h1>
 
                     <input type="hidden" class="form-control" name="propertyId" id="propertyId" formControlName="propertyId" [@valid]="form.get('propertyId')?.valid" aria-describedby="text">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="streetName">Street name</label>
-                                <input type="text" class="form-control" name="streetName" id="streetName" formControlName="streetName" [@valid]="form.get('streetName')?.valid" aria-describedby="text" placeholder="Street name">
-                                <small *ngIf="!form.get('streetName')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 5 characters, maximum 50</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="streetNumber">Street number</label>
-                                <input type="text" class="form-control" name="streetNumber" id="streetNumber" formControlName="streetNumber" [@valid]="form.get('streetNumber')?.valid" aria-describedby="text" placeholder="Street number">
-                                <small *ngIf="!form.get('streetNumber')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Field is required.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="location" name="location">Location</label>
-                                <select class="form-control" formControlName="location" [@valid]="form.get('location')?.valid" name="location">
-                                    <option value="">Select location</option>
-                                    <option *ngFor="let location of Locations;" value="{{location.id}}">{{location.name}}</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select class="form-control" formControlName="status" [@valid]="form.get('status')?.valid" name="status">
-                                    <option selected="selected" value="0">Select status</option>
-                                    <option *ngFor="let status of Statuses;" value="{{status.id}}">{{status.name}}</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="title">Price</label>
-                                <input type="number" class="form-control" id="price" formControlName="price" aria-describedby="text" name="price" [@valid]="form.get('price')?.valid" placeholder="Price">
-                                <small *ngIf="!form.get('price')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 100 as a value, maximum 1.000.000</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="type">Type</label>
-                                <select formControlName="type" class="form-control" [@valid]="form.get('type')?.valid" name="type">
-                                    <option selected="selected" value="0">Select type</option>
-                                    <option *ngFor="let type of Types;" value="{{type.id}}">{{type.name}}</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="rooms">Rooms</label>
-                                <input type="number" formControlName="rooms" class="form-control" id="rooms" name="rooms" [@valid]="form.get('rooms')?.valid" aria-describedby="text" placeholder="Rooms">
-                                <small *ngIf="!form.get('rooms')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 1, maximum 10</small>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="firstName">First name</label>
-                                <input type="text" class="form-control" formControlName="firstName" id="firstName" aria-describedby="text" placeholder="First name" name="firstName" [@valid]="form.get('firstName')?.valid">
-                                <small *ngIf="!form.get('firstName')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Required field, Maximum 30 characters allowed</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Last name</label>
-                                <input type="text" class="form-control" formControlName="lastName" id="lastName" aria-describedby="text" placeholder="Last name" name="lastName" [@valid]="form.get('lastName')?.valid">
-                                <small *ngIf="!form.get('lastName')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Required field, Maximum 30 characters allowed</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" formControlName="email" id="email" aria-describedby="text" placeholder="Email" name="email" [@valid]="form.get('email')?.valid">
-                            </div>
-                            <div class="form-group">
-                                <label for="phoneNumber">Phone number</label>
-                                <input type="text" class="form-control" formControlName="phoneNumber" id="phoneNumber" aria-describedby="text" placeholder="Phone number" name="phoneNumber" [@valid]="form.get('phoneNumber')?.valid">
-                                <small *ngIf="!form.get('phoneNumber')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Required field, Maximum 15 characters allowed</small>
-                            </div>
-                        </div>
+                    
+                    <div class="form-group">
+                        <label for="streetName">Street name</label>
+                        <input type="text" class="form-control" name="streetName" id="streetName" formControlName="streetName" [@valid]="form.get('streetName')?.valid" aria-describedby="text" placeholder="Street name">
+                        <small *ngIf="!form.get('streetName')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 5 characters, maximum 50</small>
                     </div>
-                    
-
-                    
+                    <div class="form-group">
+                        <label for="streetNumber">Street number</label>
+                        <input type="text" class="form-control" name="streetNumber" id="streetNumber" formControlName="streetNumber" [@valid]="form.get('streetNumber')?.valid" aria-describedby="text" placeholder="Street number">
+                        <small *ngIf="!form.get('streetNumber')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Field is required.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="location" name="location">Location</label>
+                        <select class="form-control" formControlName="location" [@valid]="form.get('location')?.valid" name="location">
+                            <option value="">Select location</option>
+                            <option *ngFor="let location of Locations;" value="{{location.id}}">{{location.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" formControlName="status" [@valid]="form.get('status')?.valid" name="status">
+                            <option selected="selected" value="0">Select status</option>
+                            <option *ngFor="let status of Statuses;" value="{{status.id}}">{{status.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="owner">Owner</label>
+                        <select class="form-control" formControlName="owner" [@valid]="form.get('owner')?.valid" name="owner">
+                            <option selected="selected" value="0">Select owner</option>
+                            <option *ngFor="let owner of Owners;" value="{{owner.id}}">{{owner.firstName}} {{owner.lastName}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Price</label>
+                        <input type="number" class="form-control" id="price" formControlName="price" aria-describedby="text" name="price" [@valid]="form.get('price')?.valid" placeholder="Price">
+                        <small *ngIf="!form.get('price')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 100 as a value, maximum 1.000.000</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select formControlName="type" class="form-control" [@valid]="form.get('type')?.valid" name="type">
+                            <option selected="selected" value="0">Select type</option>
+                            <option *ngFor="let type of Types;" value="{{type.id}}">{{type.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rooms">Rooms</label>
+                        <input type="number" formControlName="rooms" class="form-control" id="rooms" name="rooms" [@valid]="form.get('rooms')?.valid" aria-describedby="text" placeholder="Rooms">
+                        <small *ngIf="!form.get('rooms')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Minimum 1, maximum 10</small>
+                    </div>
 
                     <ng-container>
                         <button (click)="onSubmitPropertyForm()" type="submit" class="btn btn-success">Submit</button>
