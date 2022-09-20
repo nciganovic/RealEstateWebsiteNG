@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label for="streetNumber">Street number</label>
                         <input type="text" class="form-control" name="streetNumber" id="streetNumber" formControlName="streetNumber" [@valid]="form.get('streetNumber')?.valid" aria-describedby="text" placeholder="Street number">
-                        <small *ngIf="!form.get('streetNumber')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Field is required.</small>
+                        <small *ngIf="!form.get('streetNumber')?.valid" [ngStyle]="{'color':'red'}" class="form-text text-muted">Field is required,  maximum 50</small>
                     </div>
                     <div class="form-group">
                         <label for="location" name="location">Location</label>

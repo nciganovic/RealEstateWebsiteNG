@@ -32,7 +32,7 @@ export interface PropertyRecive
     statusId: number,
     status: string,
     streetName: string,
-    streetNumber: number,
+    streetNumber: string,
     typeId: number,
     type: string,
     locationId: number

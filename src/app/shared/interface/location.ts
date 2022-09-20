@@ -11,6 +11,6 @@ export interface Location
 export interface LocationToSend
 {
     streetName: string,
-    streetNumber: number,
+    streetNumber: string,
     cityId: number,
 }

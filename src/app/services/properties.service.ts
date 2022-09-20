@@ -2,8 +2,8 @@ import { Property, PropertyRecive, PropertyToSend } from '../shared/interface/pr
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { api } from 'src/app/constants/api';
-import { serverPath } from 'src/app/constants/server';
+import { api } from 'src/app/shared/constants/api';
+import { serverPath } from 'src/app/shared/constants/server';
 import { Street } from '../shared/interface/street';
 import { Location } from '../shared/interface/location';
 import { Owner } from '../shared/interface/owner';
@@ -13,19 +13,7 @@ import { Owner } from '../shared/interface/owner';
 })
 export class PropertiesService {
 
-  private _propertyItems: Property[] = [];
-
   constructor(private _http: HttpClient) { }
-
-  public get PropertyItems(): Property[]
-  {
-    return this._propertyItems;
-  }
-
-  public set PropertyItems(value: Property[])
-  {
-    this._propertyItems = value;
-  }
 
   getAll():Observable<any>
   {

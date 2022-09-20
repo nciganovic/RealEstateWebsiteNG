@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { serverPath } from 'src/app/constants/server';
-import { api } from 'src/app/constants/api';
+import { serverPath } from 'src/app/shared/constants/server';
+import { api } from 'src/app/shared/constants/api';
 import { Type } from '../shared/interface/type';
 
 @Injectable({

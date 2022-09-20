@@ -15,7 +15,6 @@ import { Location } from '@angular/common';
 import { Property, PropertyRecive, PropertyToSend } from 'src/app/shared/interface/property';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-create-property',
@@ -121,7 +120,7 @@ export class CreatePropertyComponent implements OnInit {
     this.form = new FormGroup({
       propertyId: new FormControl(this.form.get("propertyId")?.value),
       streetName: new FormControl(this.form.get("streetName")?.value, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-      streetNumber: new FormControl(this.form.get("streetNumber")?.value, [Validators.required]),
+      streetNumber: new FormControl(this.form.get("streetNumber")?.value, [Validators.required, Validators.maxLength(50)]),
       location: new FormControl(this.form.get("location")?.value, [Validators.required]),
       status: new FormControl(this.form.get("status")?.value, [Validators.required]),
       price: new FormControl(this.form.get("price")?.value, [Validators.required, Validators.min(100), Validators.max(1000000)]),

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { api } from 'src/app/constants/api';
-import { serverPath } from 'src/app/constants/server';
+import { api } from 'src/app/shared/constants/api';
+import { serverPath } from 'src/app/shared/constants/server';
 import { Owner } from '../shared/interface/owner';
 
 @Injectable({

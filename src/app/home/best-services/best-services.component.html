@@ -6,14 +6,14 @@
         <div id="services-cards" class="row w3pvtits-services-row text-center pt-4">
         
           <div *ngFor='let item of ServiceItems;' class="col-lg-4 service-card">
-            <a class="{{ item.class }}" href="/properties">
+            <a class="{{ item.class }}" routerLink="/properties">
                 <div class="w3pvtits-services-grids">
                     <div class="icon-effect-wthree">
                         <span class="fa {{ item.icon }} ser-icon"></span>
                     </div>
                     <h4 class="text-bl my-4">{{ item.headline }}</h4>
                     <p class="text-center">{{ item.text }}</p>
-                    <a class="service-btn btn mt-xl-5 mt-4 {{ item.class }}" href="/properties">Read More
+                    <a class="service-btn btn mt-xl-5 mt-4 {{ item.class }}" routerLink="/properties">Read More
                         <span class="fa fa-long-arrow-right ml-2"></span>
                     </a>
                 </div>  

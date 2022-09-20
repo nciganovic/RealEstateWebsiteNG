@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PropertiesService } from '../services/properties.service';
 import { Filter } from '../shared/interface/filter';
-import { Property } from '../shared/interface/property';
 import { PropertyComponent } from './property/property.component';
 
 @Component({

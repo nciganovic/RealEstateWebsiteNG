@@ -25,7 +25,6 @@ export class DropdownComponent implements OnInit {
     private _typeService: TypeService,
     private _cityService: CityService) 
   { 
-
   }
 
   @Input() public type: string = ""; 

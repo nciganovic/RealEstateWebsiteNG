@@ -46,11 +46,7 @@ export class DashboardComponent implements OnInit {
   {
     this._propertyService.remove(id).subscribe
     (
-      (Response:PropertyRecive[]) => 
-      {
-        
-
-      },
+      (Response:PropertyRecive[]) => {},
       Error =>
       {
         alert("Internal server error, please try again later.");

@@ -1,5 +1,4 @@
 import { Filter } from '../../shared/interface/filter';
-import { PropertyComponent } from './../property/property.component';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PropertiesService } from 'src/app/services/properties.service';
 
@@ -45,8 +44,6 @@ export class FilterComponent implements OnInit {
     };
 
     this.filterClicked.emit(filter);
-
-    //this._propertyService.PropertyItems = this._propertyService.filterProperties(filter);
   }
 
   public onSearch()
